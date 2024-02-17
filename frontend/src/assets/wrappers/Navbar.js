@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const NavWrapper = styled.div`
   .main-navbar {
     position: sticky;
-    border-bottom: 1px solid #ccc;
   }
   .main-navbar .top-navbar {
-    background-color: #2874f0;
+    background-color: rgb(115 103 240);
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -24,7 +23,6 @@ const Wrapper = styled.div`
   }
   .main-navbar .top-navbar .dropdown-menu .dropdown-item {
     padding: 8px 16px;
-    border-bottom: 1px solid #ccc;
     font-size: 14px;
   }
   .main-navbar .top-navbar .dropdown-menu .dropdown-item i {
@@ -42,7 +40,15 @@ const Wrapper = styled.div`
     color: #000;
     font-size: 15px;
   }
-
+  span.logo-text {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #b8c2cc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
   @media only screen and (max-width: 600px) {
     .main-navbar .top-navbar .nav-link {
       font-size: 12px;
@@ -50,4 +56,4 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default Wrapper;
+export default NavWrapper;

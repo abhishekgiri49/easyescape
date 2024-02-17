@@ -1,18 +1,13 @@
 import { Outlet } from "react-router-dom";
 
 import { Navbar, Sidebar } from "../../components";
-
+import { AuthUser } from "./../../../helper/AuthUser";
 import { useState, createContext, useContext } from "react";
 const DashboardContext = createContext();
 const Dashboard = () => {
-  const user = { name: "john" };
-  const [isActive, setIsActive] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const { user, token, logout } = AuthUser();
 
-  const toggleDarkTheme = () => {
-    console.log("toggle dark theme");
-  };
+  const [isActive, setIsActive] = useState(false);
 
   const toggleSidebar = () => {
     setIsActive(!isActive);
@@ -21,16 +16,17 @@ const Dashboard = () => {
   //   setShowSidebar(!showSidebar);
   // };
 
-  const logoutUser = async () => {
-    console.log("logout user");
+  const logoutUser = () => {
+    if (token !== undefined) {
+      logout();
+      navigate("/login");
+    }
   };
   return (
     <DashboardContext.Provider
       value={{
         user,
         isActive,
-        isDarkTheme,
-        toggleDarkTheme,
         toggleSidebar,
         logoutUser,
       }}

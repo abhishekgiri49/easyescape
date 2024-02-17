@@ -1,11 +1,41 @@
+import img from "../../../assets/images/register.svg";
+import { useState } from "react";
 import { Logo, FormRow } from "../../components";
 import { Link } from "react-router-dom";
-import img from "../../../assets/images/register.svg";
+import "../../../assets/css/pages/authentication.css";
+import { AuthService } from "../../../repositories";
 const Register = () => {
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [password, setPassword] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const registerForm = () => {
+    const registerData = {
+      firstName,
+      lastName,
+      username,
+      email,
+      phoneNumber,
+      password,
+    };
+
+    AuthService.register(registerData)
+      .then(() => {
+        console.log("loggedIn");
+        // Optionally, you can redirect or perform other actions after successful addition
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // api call
+  };
   return (
     <div class="app-content">
-      <div class="content-overlay"></div>
-      <div class="header-navbar-shadow"></div>
       <div class="content-wrapper">
         <div class="content-header row"></div>
         <div class="content-body">
@@ -25,34 +55,74 @@ const Register = () => {
                   <p class="card-text mb-2">
                     Make your app management easy and fun!
                   </p>
-                  <form
-                    class="auth-register-form mt-2"
-                    action="index.html"
-                    method="POST"
-                  >
-                    <FormRow
-                      type="text"
-                      name="username"
-                      labeltext="Username"
-                      placeholder="e.g. abc@123"
-                    />
-                    <FormRow
-                      type="email"
-                      name="email"
-                      labeltext="Email"
-                      placeholder="e.g. john@example.com"
-                    />
+                  {errorMessage && (
+                    <div className="alert alert-danger" role="alert">
+                      {errorMessage}
+                    </div>
+                  )}
+                  {successMessage && (
+                    <div className="alert alert-success" role="alert">
+                      {successMessage}
+                    </div>
+                  )}
 
-                    <FormRow
-                      type="password"
-                      name="password"
-                      labeltext="password"
-                      placeholder="********"
-                    />
-                    <button class="btn btn-primary w-100" tabindex="5">
-                      Sign up
-                    </button>
-                  </form>
+                  <FormRow
+                    type="text"
+                    name="firstName"
+                    labeltext="First Name"
+                    placeholder="e.g. john"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <FormRow
+                    type="text"
+                    name="lastName"
+                    labeltext="Last Name"
+                    placeholder="e.g. doe"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                  <FormRow
+                    type="text"
+                    name="username"
+                    labeltext="Username"
+                    placeholder="e.g. abc@123"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <FormRow
+                    type="text"
+                    name="phoneNumber"
+                    labeltext="Phone Number"
+                    placeholder="e.g. 1234567890"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
+                  <FormRow
+                    type="email"
+                    name="email"
+                    labeltext="Email"
+                    placeholder="e.g. john@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+
+                  <FormRow
+                    type="password"
+                    name="password"
+                    labeltext="password"
+                    placeholder="********"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <button
+                    class="btn btn-primary w-100"
+                    onClick={registerForm}
+                    tabIndex="5"
+                  >
+                    Sign up
+                  </button>
+
                   <p className="text-center mt-2">
                     <span>Already have an account? &nbsp;</span>
                     <Link to="/login" className="member-btn">

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const FormRow = ({ type, name, labeltext, placeholder }) => {
+const FormRow = ({ type, name, labeltext, placeholder, value, onChange }) => {
   return (
-    <div className="mb-1">
+    <div>
       <label htmlFor={name} className="form-label">
         {labeltext || name}
       </label>
@@ -12,6 +12,8 @@ const FormRow = ({ type, name, labeltext, placeholder }) => {
         name={name}
         placeholder={placeholder || ""}
         className="form-control"
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

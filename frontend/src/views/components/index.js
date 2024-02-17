@@ -9,5 +9,5 @@ export { default as Breadcrumb } from "./Breadcrumb";
 export { default as DataTable } from "./DataTable";
 
 export { default as Carousel } from "./Carousel";
-export { default as ProductCard } from "./Product/ProductCard";
+export { default as PackageCard } from "./Package/PackageCard";
 export { default as Pagination } from "./Pagination";

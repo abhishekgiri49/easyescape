@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { UserNavbar } from "../../components";
 import styled from "styled-components";
+
 import NavWrapper from "../../../assets/wrappers/Navbar";
 const HomeLayout = () => {
   return (

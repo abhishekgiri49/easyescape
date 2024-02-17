@@ -1,20 +1,20 @@
-import main from "../../assets/images/main.svg";
 import { Link } from "react-router-dom";
 import { FaAlignJustify } from "react-icons/fa";
 import {
   Carousel,
   FilterSidebar,
-  ProductCard,
+  PackageCard,
   Pagination,
 } from "../components";
 
 const Landing = () => {
   return (
     <>
-      <div className="carousel-div">
+      <div className="">
         <Carousel />
       </div>
       <div className="content-wrapper container-xxl p-0">
+        <h1 className="title center">Travel Packages</h1>
         <div className="content-detached content-right">
           <div className="content-body">
             <section id="ecommerce-header">
@@ -65,11 +65,11 @@ const Landing = () => {
             <div className="body-content-overlay"></div>
 
             <section id="ecommerce-products" className="grid-view">
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+              <PackageCard />
+              <PackageCard />
+              <PackageCard />
+              <PackageCard />
+              <PackageCard />
             </section>
             <Pagination />
           </div>

@@ -1,12 +1,36 @@
+import { useState } from "react";
 import { Logo, FormRow } from "../../components";
-import Wrapper from "../../../assets/wrappers/RegisterAndLoginPage";
 import { Link } from "react-router-dom";
 import "../../../assets/css/pages/authentication.css";
+import { AuthService } from "../../../repositories";
+import { useNavigate } from "react-router-dom";
+import { AuthUser } from "./../../../helper/AuthUser";
 const Login = () => {
+  const navigate = useNavigate();
+  const { setToken } = AuthUser();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const submitForm = () => {
+    const loginData = { email, password };
+
+    AuthService.login(loginData)
+      .then((res) => {
+        setToken(res.data.user, res.data.token);
+        if (res.data.user.role == "Admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/dashboard");
+        }
+
+        // Optionally, you can redirect or perform other actions after successful addition
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // api call
+  };
   return (
     <div className=" ">
-      <div className="content-overlay"></div>
-      <div className="header-navbar-shadow"></div>
       <div className="content-wrapper">
         <div className="content-header row"></div>
         <div className="content-body">
@@ -25,25 +49,31 @@ const Login = () => {
                     Please sign-in to your account and start the adventure
                   </p>
 
-                  <form className="auth-login-form mt-2" method="POST">
-                    <FormRow
-                      type="email"
-                      name="email"
-                      labeltext="Email"
-                      placeholder="e.g. john@example.com"
-                    />
+                  <FormRow
+                    type="email"
+                    name="email"
+                    labeltext="Email"
+                    placeholder="e.g. john@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
 
-                    <FormRow
-                      type="password"
-                      name="password"
-                      labeltext="password"
-                      placeholder="********"
-                    />
+                  <FormRow
+                    type="password"
+                    name="password"
+                    labeltext="password"
+                    placeholder="********"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
 
-                    <button className="btn btn-primary w-100" tabindex="4">
-                      Sign in
-                    </button>
-                  </form>
+                  <button
+                    className="btn btn-primary w-100"
+                    onClick={submitForm}
+                    tabIndex="4"
+                  >
+                    Sign in
+                  </button>
 
                   <p className="text-center mt-2">
                     <span>New on our platform?&nbsp;</span>

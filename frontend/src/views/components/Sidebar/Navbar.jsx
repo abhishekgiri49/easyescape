@@ -4,7 +4,7 @@ import { FaAlignJustify } from "react-icons/fa";
 import avatar from "../../../assets/images/avatar.svg";
 import { useDashboardContext } from "../../pages/layouts/DashboardLayout";
 const Navbar = () => {
-  const { isActive, toggleSidebar } = useDashboardContext();
+  const { user, logoutUser } = useDashboardContext();
 
   return (
     <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow">
@@ -36,7 +36,9 @@ const Navbar = () => {
               aria-expanded="false"
             >
               <div className="user-nav d-sm-flex d-none">
-                <span className="user-name fw-bolder">John Doe</span>
+                <span className="user-name fw-bolder">
+                  {user.firstName + " " + user.lastName}
+                </span>
                 <span className="user-status">Admin</span>
               </div>
               <span className="avatar">
@@ -55,30 +57,16 @@ const Navbar = () => {
               aria-labelledby="dropdown-user"
             >
               <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="user"></i> Profile
-              </a>
-              <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="mail"></i> Inbox
-              </a>
-              <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="check-square"></i> Task
-              </a>
-              <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="message-square"></i> Chats
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
                 <i className="me-50" data-feather="settings"></i> Settings
               </a>
               <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="credit-card"></i> Pricing
+                <i className="me-50" data-feather="credit-card"></i> Change
+                Password
               </a>
-              <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="help-circle"></i> FAQ
-              </a>
-              <a className="dropdown-item" href="#">
+
+              <span className="dropdown-item" onClick={logoutUser}>
                 <i className="me-50" data-feather="power"></i> Logout
-              </a>
+              </span>
             </div>
           </li>
         </ul>

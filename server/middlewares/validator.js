@@ -1,12 +1,18 @@
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const validateRegistration = [
-  body("name")
+  body("firstName")
     .isLength({ min: 3 })
-    .withMessage("Name must be at least 3 characters long"),
+    .withMessage("First Name must be at least 3 characters long"),
+  body("lastName")
+    .isLength({ min: 3 })
+    .withMessage("Last Name must be at least 3 characters long"),
   body("username")
     .isLength({ min: 3 })
     .withMessage("Username must be at least 3 characters long"),
+  body("phoneNumber")
+    .isLength({ min: 3 })
+    .withMessage("Phone number must be at least 3 characters long"),
   body("email")
     .isEmail()
     .custom(async (value) => {
