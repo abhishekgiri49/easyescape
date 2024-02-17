@@ -10,7 +10,7 @@ import {
 const Landing = () => {
   return (
     <>
-      <div className="">
+      <div className="carousel-div">
         <Carousel />
       </div>
       <div className="content-wrapper container-xxl p-0">

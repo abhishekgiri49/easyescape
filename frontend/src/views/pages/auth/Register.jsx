@@ -26,45 +26,48 @@ const Register = () => {
 
     AuthService.register(registerData)
       .then(() => {
-        console.log("loggedIn");
+        setSuccessMessage("Registered successfully");
+        setErrors({});
         // Optionally, you can redirect or perform other actions after successful addition
       })
       .catch((error) => {
-        console.log(error);
+        if (error.status === 422) {
+          const newErrors = {};
+          error.data.data.forEach((item) => {
+            const fieldName = item.path;
+            const errorMsg = item.msg;
+            newErrors[fieldName] = errorMsg;
+          });
+          setErrors(newErrors);
+        } else {
+          setErrorMessage("Error registering. Please try again.");
+        }
       });
     // api call
   };
   return (
-    <div class="app-content">
-      <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-          <div class="auth-wrapper auth-cover">
-            <div class="auth-inner row m-0">
-              <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
-                <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
-                  <img class="img-fluid" src={img} alt="Register V2" />
+    <div className="app-content">
+      <div className="content-wrapper">
+        <div className="content-header row"></div>
+        <div className="content-body">
+          <div className="auth-wrapper auth-cover">
+            <div className="auth-inner row m-0">
+              <div className="d-none d-lg-flex col-lg-8 align-items-center p-5">
+                <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
+                  <img className="img-fluid" src={img} alt="Register V2" />
                 </div>
               </div>
 
-              <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                  <h2 class="card-title fw-bold mb-1">
+              <div className="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+                <div className="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+                  <h2 className="card-title fw-bold mb-1">
                     Adventure starts here 🚀
                   </h2>
-                  <p class="card-text mb-2">
+                  <p className="card-text mb-2">
                     Make your app management easy and fun!
                   </p>
-                  {errorMessage && (
-                    <div className="alert alert-danger" role="alert">
-                      {errorMessage}
-                    </div>
-                  )}
-                  {successMessage && (
-                    <div className="alert alert-success" role="alert">
-                      {successMessage}
-                    </div>
-                  )}
+                  {errorMessage && <>{errorMessage}</>}
+                  {successMessage && <>{successMessage}</>}
 
                   <FormRow
                     type="text"
@@ -73,7 +76,11 @@ const Register = () => {
                     placeholder="e.g. john"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
+                    error={
+                      errors.hasOwnProperty("firstName") ? errors.firstName : ""
+                    }
                   />
+
                   <FormRow
                     type="text"
                     name="lastName"
@@ -81,6 +88,9 @@ const Register = () => {
                     placeholder="e.g. doe"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
+                    error={
+                      errors.hasOwnProperty("lastName") ? errors.lastName : ""
+                    }
                   />
                   <FormRow
                     type="text"
@@ -89,6 +99,9 @@ const Register = () => {
                     placeholder="e.g. abc@123"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    error={
+                      errors.hasOwnProperty("username") ? errors.username : ""
+                    }
                   />
                   <FormRow
                     type="text"
@@ -97,6 +110,11 @@ const Register = () => {
                     placeholder="e.g. 1234567890"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
+                    error={
+                      errors.hasOwnProperty("phoneNumber")
+                        ? errors.phoneNumber
+                        : ""
+                    }
                   />
                   <FormRow
                     type="email"
@@ -105,6 +123,7 @@ const Register = () => {
                     placeholder="e.g. john@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    error={errors.hasOwnProperty("email") ? errors.email : ""}
                   />
 
                   <FormRow
@@ -114,9 +133,12 @@ const Register = () => {
                     placeholder="********"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    error={
+                      errors.hasOwnProperty("password") ? errors.password : ""
+                    }
                   />
                   <button
-                    class="btn btn-primary w-100"
+                    className="btn btn-primary w-100"
                     onClick={registerForm}
                     tabIndex="5"
                   >

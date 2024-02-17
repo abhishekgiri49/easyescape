@@ -9,7 +9,6 @@ const UserNavbar = () => {
     }
   };
   const renderContent = () => {
-    console.log("here");
     if (user == undefined) {
       return (
         <ul className="nav justify-content-end">

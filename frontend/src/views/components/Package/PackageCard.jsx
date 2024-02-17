@@ -2,21 +2,21 @@ import productimage from "./../../../assets/images/eCommerce/kashmir.jpg";
 const PackageCard = () => {
   return (
     <>
-      <div class="card">
-        <img class="card-img-top" src={productimage} alt="Card image cap" />
-        <div class="card-body">
-          <p class="card-title">
+      <div className="card">
+        <img className="card-img-top" src={productimage} alt="Card image cap" />
+        <div className="card-body">
+          <p className="card-title">
             Magnificent Kashmir Holiday -With H{" "}
-            <span class="selected">6N/7D</span>
+            <span className="selected">6N/7D</span>
           </p>
-          <p class="card-text single-line-list">
+          <p className="card-text single-line-list">
             <span>1N Srinagar Houseboat</span>
             <span>1N Gulmarg</span>
             <span>2N Pahalgam</span>
             <span>2N Srinagar</span>
           </p>
         </div>
-        <ul class="two-column-list">
+        <ul className="two-column-list">
           <li>Round Trip</li>
           <li>Flights</li>
           <li>Intercity Car Transfers</li>
@@ -28,16 +28,16 @@ const PackageCard = () => {
           <li>Indian Lunch</li>
           <li>Night Tour</li>
         </ul>
-        <div class="card-body">
-          {/* <div class="price">
-            <div class="discount-info">save upto 30% off</div>
-            <div class="original-price">$213</div>
+        <div className="card-body">
+          {/* <div className="price">
+            <div className="discount-info">save upto 30% off</div>
+            <div className="original-price">$213</div>
           </div> */}
-          <div class="includeWrapper">
-            <div class="includeItemCard">
-              <div class="rightSec">
+          <div className="includeWrapper">
+            <div className="includeItemCard">
+              <div className="rightSec">
                 <p>
-                  <span class="priceStyle">CAD 200</span>
+                  <span className="priceStyle">CAD 200</span>
                   <span> /Person</span>
                 </p>
                 <p>

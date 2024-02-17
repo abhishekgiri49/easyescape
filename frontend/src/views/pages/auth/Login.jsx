@@ -8,6 +8,9 @@ import { AuthUser } from "./../../../helper/AuthUser";
 const Login = () => {
   const navigate = useNavigate();
   const { setToken } = AuthUser();
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errors, setErrors] = useState({});
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const submitForm = () => {
@@ -15,6 +18,7 @@ const Login = () => {
 
     AuthService.login(loginData)
       .then((res) => {
+        setErrors({});
         setToken(res.data.user, res.data.token);
         if (res.data.user.role == "Admin") {
           navigate("/admin/dashboard");
@@ -25,7 +29,17 @@ const Login = () => {
         // Optionally, you can redirect or perform other actions after successful addition
       })
       .catch((error) => {
-        console.log(error);
+        if (error.status === 422) {
+          const newErrors = {};
+          error.data.data.forEach((item) => {
+            const fieldName = item.path;
+            const errorMsg = item.msg;
+            newErrors[fieldName] = errorMsg;
+          });
+          setErrors(newErrors);
+        } else {
+          setErrorMessage("Error registering. Please try again.");
+        }
       });
     // api call
   };
@@ -56,6 +70,7 @@ const Login = () => {
                     placeholder="e.g. john@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    error={errors.hasOwnProperty("email") ? errors.email : ""}
                   />
 
                   <FormRow
@@ -65,6 +80,9 @@ const Login = () => {
                     placeholder="********"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    error={
+                      errors.hasOwnProperty("password") ? errors.password : ""
+                    }
                   />
 
                   <button

@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 
-const FormRow = ({ type, name, labeltext, placeholder, value, onChange }) => {
+const FormRow = ({
+  type,
+  name,
+  labeltext,
+  placeholder,
+  value,
+  onChange,
+  error,
+}) => {
   return (
     <div>
       <label htmlFor={name} className="form-label">
@@ -15,6 +23,11 @@ const FormRow = ({ type, name, labeltext, placeholder, value, onChange }) => {
         value={value}
         onChange={onChange}
       />
+      {error && (
+        <span className="alert alert-danger" role="alert">
+          {error}
+        </span>
+      )}
     </div>
   );
 };
