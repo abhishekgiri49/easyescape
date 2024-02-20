@@ -5,12 +5,14 @@ import {
   Landing,
   Register,
   Login,
+  ForgotPassword,
   UserDashboardLayout,
   DashboardLayout,
   Error,
   AdminList,
   UserList,
   Stats,
+  Search,
   ProfileDetail,
 } from "../views";
 
@@ -48,8 +50,16 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "search",
+        element: <Search />,
+      },
+      {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
       },
     ],
   },

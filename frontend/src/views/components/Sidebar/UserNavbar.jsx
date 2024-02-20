@@ -11,7 +11,7 @@ const UserNavbar = () => {
   const renderContent = () => {
     if (user == undefined) {
       return (
-        <ul className="nav justify-content-end">
+        <ul className="nav justify-content-center">
           <li className="nav-item">
             <Link to="/login" className="nav-link">
               Login
@@ -26,7 +26,7 @@ const UserNavbar = () => {
       );
     } else {
       return (
-        <ul className="nav justify-content-end">
+        <ul className="nav justify-content-center">
           <li className="nav-item">
             <a className="nav-link" href="#">
               <i className="fa fa-heart"></i> Wishlist
