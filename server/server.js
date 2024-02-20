@@ -33,6 +33,8 @@ app.use("/api/public/auth", authRoutes);
 const categoryRoutes = require("./routes/categoryRoutes.js");
 app.use("/api/secured/categories", categoryRoutes);
 
+const placeRoutes = require("./routes/placeRoutes.js");
+app.use("/api/secured/places", placeRoutes);
 // Start server
 const PORT = Config.port || 8080;
 

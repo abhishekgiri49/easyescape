@@ -47,6 +47,18 @@ const validateCategory = [
     .withMessage("Description must be at least 6 characters long"),
 ];
 
+const validatePlace = [
+  body("name")
+    .isLength({ min: 3 })
+    .withMessage("Name must be at least 3 characters long"),
+  body("categoryId")
+    .isMongoId()
+    .withMessage("Invalid category ID. Please select category"),
+  body("status")
+    .isLength({ min: 1, max: 10 })
+    .withMessage("Status must be at least 6 characters long"),
+];
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -61,6 +73,6 @@ module.exports = {
   validateRegistration,
   validateLogin,
   validateCategory,
-
+  validatePlace,
   validate,
 };
