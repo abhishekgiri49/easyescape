@@ -7,7 +7,7 @@ const Add = ({ onClose, onSubmit }) => {
     firstName: "",
     lastName: "",
     email: "",
-    role: "superadmin",
+    role: "Admin",
     // ... other fields
   });
 

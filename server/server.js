@@ -26,15 +26,10 @@ mongoose
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-// Routes
-const authRoutes = require("./routes/authRoutes");
-app.use("/api/public/auth", authRoutes);
+// Import and use routes from routes/index.js
+const routes = require("./routes");
+app.use(routes);
 
-const categoryRoutes = require("./routes/categoryRoutes.js");
-app.use("/api/secured/categories", categoryRoutes);
-
-const placeRoutes = require("./routes/placeRoutes.js");
-app.use("/api/secured/places", placeRoutes);
 // Start server
 const PORT = Config.port || 8080;
 

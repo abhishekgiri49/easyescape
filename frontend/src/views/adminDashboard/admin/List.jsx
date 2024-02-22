@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Breadcrumb, DataTable } from "../components";
-import { AdminAdd } from "../../views";
+import { Breadcrumb, DataTable } from "../../components";
+import { AdminAdd } from "../../../views";
 const List = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [clickedRow, setClickedRow] = useState(null);
