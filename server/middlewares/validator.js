@@ -59,6 +59,18 @@ const validatePlace = [
     .withMessage("Status must be at least 6 characters long"),
 ];
 
+const validateBlog = [
+  body("name")
+    .isLength({ min: 3 })
+    .withMessage("Name must be at least 3 characters long"),
+  body("blogId")
+    .isMongoId()
+    .withMessage("Invalid Blog ID. Please select blog"),
+  body("status")
+    .isLength({ min: 1, max: 10 })
+    .withMessage("Status must be at least 6 characters long"),
+];
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -74,5 +86,5 @@ module.exports = {
   validateLogin,
   validateCategory,
   validatePlace,
-  validate,
+  validateBlog
 };
