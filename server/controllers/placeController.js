@@ -15,11 +15,11 @@ const create = async (req, res) => {
   }
 };
 
-// Get all categories
+// Get all places
 const getAll = async (req, res) => {
   try {
-    const categories = await Category.find();
-    res.status(200).json({ status: 201, data: categories, message: "success" });
+    const places = await Place.find().populate('category');
+    res.status(200).json({ status: 201, data: places, message: "success" });
   } catch (error) {
     console.error(error);
     res
@@ -31,12 +31,12 @@ const getAll = async (req, res) => {
 // Get a specific category by ID
 const getItemById = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id);
-    if (!category)
+    const place = await Place.findById(req.params.id).populate('category');
+    if (!place)
       return res
         .status(404)
-        .json({ status: 404, data: [], message: "Category not found" });
-    res.json({ status: 200, data: category, message: "Category details" });
+        .json({ status: 404, data: [], message: "Place not found" });
+    res.json({ status: 200, data: category, message: "Place details" });
   } catch (error) {
     console.error(error);
     res
@@ -48,20 +48,20 @@ const getItemById = async (req, res) => {
 // Update a Item by ID
 const updateItemById = async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const updatedCategory = await Category.findByIdAndUpdate(
+    const { name, status } = req.body;
+    const updatedPlaces = await Place.findByIdAndUpdate(
       req.params.id,
-      { title, description },
+      { name, status,category:categoryId },
       { new: true }
     );
-    if (!updatedCategory)
+    if (!updatedPlaces)
       return res
         .status(404)
-        .json({ status: 404, data: [], message: "Category not found" });
+        .json({ status: 404, data: [], message: "Place not found" });
     res.json({
       status: 200,
-      data: updatedCategory,
-      message: "Category updated successfully",
+      data: updatedPlaces,
+      message: "Place updated successfully",
     });
   } catch (error) {
     console.error(error);
@@ -74,12 +74,12 @@ const updateItemById = async (req, res) => {
 // Delete a Item by ID
 const deleteItemById = async (req, res) => {
   try {
-    const deletedCategory = await Category.findByIdAndDelete(req.params.id);
-    if (!deletedCategory)
+    const deletedPlace = await Place.findByIdAndDelete(req.params.id);
+    if (!deletedPlace)
       return res
         .status(404)
-        .json({ status: 404, data: [], message: "Category not found" });
-    res.json({ status: 200, data: [], message: "Category Deleted" });
+        .json({ status: 404, data: [], message: "Place not found" });
+    res.json({ status: 200, data: [], message: "Place Deleted" });
   } catch (error) {
     console.error(error);
     res
