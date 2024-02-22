@@ -9,8 +9,8 @@ export { default as ForgotPassword } from "./pages/auth/ForgotPassword";
 export { default as Error } from "./pages/utils/Error";
 export { default as Stats } from "./pages/utils/Stats";
 
-export { default as AdminList } from "./admin/List";
-export { default as AdminAdd } from "./admin/Add";
+export { default as AdminList } from "./adminDashboard/admin/List";
+export { default as AdminAdd } from "./adminDashboard/admin/Add";
 export { default as UserList } from "./users/List";
 export { default as UserAdd } from "./users/Add";
 export { default as ProfileDetail } from "./userDashboard/Profile/Detail";
