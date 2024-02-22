@@ -27,7 +27,7 @@ const create = async (req, res) => {
 // Get all users
 const getAll = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({ role: "Admin" });
     res.status(200).json({ status: 200, data: users, message: "success" });
   } catch (error) {
     console.error(error);
@@ -40,7 +40,7 @@ const getAll = async (req, res) => {
 // Get a specific user by ID
 const getById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findOne({ _id: "req.params.id", role: "Admin" });
     if (!user)
       return res
         .status(404)
@@ -57,18 +57,11 @@ const getById = async (req, res) => {
 // Update a user by ID
 const updateById = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      phoneNumber,
-      username,
-      email,
-      password,
-      role,
-    } = req.body;
+    const { firstName, lastName, phoneNumber, username, email, password } =
+      req.body;
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
-      { firstName, lastName, phoneNumber, username, email, password, role },
+      { firstName, lastName, phoneNumber, username, email, password },
       { new: true }
     );
     if (!updatedUser)
@@ -91,7 +84,10 @@ const updateById = async (req, res) => {
 // Delete a user by ID
 const deleteById = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    const deletedUser = await User.findOneAndDelete({
+      _id: "req.params.id",
+      role: "Admin",
+    });
     if (!deletedUser)
       return res
         .status(404)
