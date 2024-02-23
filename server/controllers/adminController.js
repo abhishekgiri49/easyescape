@@ -1,17 +1,19 @@
 const User = require("../models/User");
-
+const bcrypt = require("bcryptjs");
 // Create a new user
 const create = async (req, res) => {
   try {
     const { firstName, lastName, phoneNumber, username, email, password } =
       req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = new User({
       firstName,
       lastName,
       phoneNumber,
       username,
       email,
-      password,
+      password: hashedPassword,
       role: "Admin",
     });
     const savedUser = await newUser.save();
@@ -85,7 +87,7 @@ const updateById = async (req, res) => {
 const deleteById = async (req, res) => {
   try {
     const deletedUser = await User.findOneAndDelete({
-      _id: "req.params.id",
+      _id: req.params.id,
       role: "Admin",
     });
     if (!deletedUser)

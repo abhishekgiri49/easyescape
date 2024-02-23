@@ -7,6 +7,7 @@ export default function DataTable({ columns, rows }) {
       <DataGrid
         autoHeight
         rows={rows}
+        getRowId={(row) => row._id}
         columns={columns}
         initialState={{
           pagination: {

@@ -63,14 +63,38 @@ const validateBlog = [
   body("name")
     .isLength({ min: 3 })
     .withMessage("Name must be at least 3 characters long"),
-  body("blogId")
-    .isMongoId()
-    .withMessage("Invalid Blog ID. Please select blog"),
+  body("blogId").isMongoId().withMessage("Invalid Blog ID. Please select blog"),
   body("status")
     .isLength({ min: 1, max: 10 })
     .withMessage("Status must be at least 6 characters long"),
 ];
-
+const validateUserUpdate = [
+  body("firstName")
+    .isLength({ min: 3 })
+    .withMessage("First Name must be at least 3 characters long"),
+  body("lastName")
+    .isLength({ min: 3 })
+    .withMessage("Last Name must be at least 3 characters long"),
+  body("username")
+    .isLength({ min: 3 })
+    .withMessage("Username must be at least 3 characters long"),
+  body("phoneNumber")
+    .isLength({ min: 3 })
+    .withMessage("Phone number must be at least 3 characters long"),
+  body("email")
+    .isEmail()
+    .custom(async (value, { req }) => {
+      const { email } = req.body;
+      const existingUser = await User.findByEmail(value);
+      if (existingUser && existingUser.email !== email) {
+        throw new Error("A user already exists with this e-mail address");
+      }
+    }),
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters long"),
+  // Add more validation rules as needed
+];
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -86,5 +110,7 @@ module.exports = {
   validateLogin,
   validateCategory,
   validatePlace,
-  validateBlog
+  validateBlog,
+  validateUserUpdate,
+  validate,
 };

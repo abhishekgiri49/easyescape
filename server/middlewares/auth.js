@@ -14,9 +14,7 @@ const verifyToken = async (req, res, next) => {
     const user = await User.findOne({
       _id: decoded.userId,
     });
-    if (!user) {
-      throw new Error();
-    }
+
     req.token = token;
     req.user = user;
     next();

@@ -11,4 +11,5 @@ router.use("/api/public/auth", authRoutes);
 router.use("/api/secured/categories", categoryRoutes);
 router.use("/api/secured/places", placeRoutes);
 router.use("/api/secured/admin", adminRoutes);
+
 module.exports = router;

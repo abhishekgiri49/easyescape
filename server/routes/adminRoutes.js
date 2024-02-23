@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { verifyToken, isAdmin } = require("../middlewares/auth");
 
-const { validateRegistration, validate } = require("../middlewares/validator");
+const {
+  validateRegistration,
+  validateUserUpdate,
+  validate,
+} = require("../middlewares/validator");
 const {
   create,
   getAll,
@@ -25,7 +29,7 @@ router.put(
   "/:id",
   verifyToken,
   isAdmin,
-  validateRegistration,
+  validateUserUpdate,
   validate,
   updateById
 );

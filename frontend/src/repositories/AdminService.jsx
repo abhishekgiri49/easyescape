@@ -2,7 +2,7 @@ import Repository from "./Repository";
 
 const resource = "/secured/admin";
 
-const UserService = {
+const AdminService = {
   get() {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/`)
@@ -100,4 +100,4 @@ const UserService = {
   },
 };
 
-export default UserService;
+export default AdminService;

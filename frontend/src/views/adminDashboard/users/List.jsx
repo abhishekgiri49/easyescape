@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Breadcrumb, DataTable } from "../../components";
 
 import { AdminService } from "../../../repositories";
-import { AdminAdd } from "../../../views";
+import { UserAdd } from "../../../views";
 const List = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -76,6 +76,7 @@ const List = () => {
 
   const handleEditAction = (id) => {
     const rowIndex = rows.findIndex((row) => row._id === id);
+
     setFormData(rows[rowIndex]);
     setEditMode(true);
     setShow(true);
@@ -109,49 +110,26 @@ const List = () => {
     [clickedRow]
   );
   const handleModalSubmit = (formData) => {
-    if (editMode) {
-      // If in edit mode, update existing admin
-      AdminService.update(formData._id, formData)
-        .then(() => {
-          setErrors({});
-          handleCloseModal();
-          // Optionally, you can redirect or perform other actions after successful update
-        })
-        .catch((error) => {
-          if (error.status === 422) {
-            const newErrors = {};
-            error.data.data.forEach((item) => {
-              const fieldName = item.path;
-              const errorMsg = item.msg;
-              newErrors[fieldName] = errorMsg;
-            });
-            setErrors(newErrors);
-          } else {
-            setErrorMessage("Error updating Admin. Please try again.");
-          }
-        });
-    } else {
-      // If not in edit mode, create new admin
-      AdminService.create(formData)
-        .then(() => {
-          setErrors({});
-          handleCloseModal();
-          // Optionally, you can redirect or perform other actions after successful addition
-        })
-        .catch((error) => {
-          if (error.status === 422) {
-            const newErrors = {};
-            error.data.data.forEach((item) => {
-              const fieldName = item.path;
-              const errorMsg = item.msg;
-              newErrors[fieldName] = errorMsg;
-            });
-            setErrors(newErrors);
-          } else {
-            setErrorMessage("Error adding Admin. Please try again.");
-          }
-        });
-    }
+    AdminService.create(formData)
+      .then(() => {
+        setErrors({});
+        handleCloseModal();
+        // Optionally, you can redirect or perform other actions after successful addition
+      })
+      .catch((error) => {
+        if (error.status === 422) {
+          const newErrors = {};
+          error.data.data.forEach((item) => {
+            const fieldName = item.path;
+            const errorMsg = item.msg;
+            newErrors[fieldName] = errorMsg;
+          });
+          setErrors(newErrors);
+        } else {
+          setErrorMessage("Error adding Admin. Please try again.");
+        }
+      });
+    // Handle form submission logic here
   };
 
   return (
@@ -185,7 +163,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <AdminAdd
+      <UserAdd
         editMode={editMode}
         initialFormData={formData}
         onClose={handleCloseModal}
