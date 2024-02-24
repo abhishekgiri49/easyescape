@@ -18,3 +18,9 @@ export { default as Search } from "./pages/home/Search";
 
 export { default as CategoryList } from "./adminDashboard/categories/List";
 export { default as CategoryAdd } from "./adminDashboard/categories/Add";
+
+export { default as PlaceList } from "./adminDashboard/places/List";
+export { default as PlaceAdd } from "./adminDashboard/places/Add";
+
+export { default as BlogList } from "./adminDashboard/blogs/List";
+export { default as BlogAdd } from "./adminDashboard/blogs/Add";

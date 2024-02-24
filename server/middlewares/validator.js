@@ -56,19 +56,31 @@ const validatePlace = [
   body("categoryId")
     .isMongoId()
     .withMessage("Invalid category ID. Please select category"),
-  body("status")
-    .isLength({ min: 1, max: 10 })
-    .withMessage("Status must be at least 6 characters long"),
+  body("status").notEmpty().withMessage("Status cannot be unchecked."),
+  body("image")
+    .optional()
+    .notEmpty()
+    .withMessage("Please upload image to proceed."),
 ];
 
 const validateBlog = [
-  body("name")
+  body("title")
     .isLength({ min: 3 })
     .withMessage("Name must be at least 3 characters long"),
-  body("blogId").isMongoId().withMessage("Invalid Blog ID. Please select blog"),
-  body("status")
-    .isLength({ min: 1, max: 10 })
-    .withMessage("Status must be at least 6 characters long"),
+  body("description")
+    .isLength({ min: 6 })
+    .withMessage("Description must be at least 6 characters long"),
+  body("categoryId")
+    .isMongoId()
+    .withMessage("Invalid category ID. Please select category"),
+  body("placeId")
+    .isMongoId()
+    .withMessage("Invalid place ID. Please select place"),
+  body("status").notEmpty().withMessage("Status cannot be unchecked."),
+  body("image")
+    .optional()
+    .notEmpty()
+    .withMessage("Please upload image to proceed."),
 ];
 const validateUserUpdate = [
   body("firstName")

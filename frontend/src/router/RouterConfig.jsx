@@ -14,6 +14,8 @@ import {
   Stats,
   Search,
   CategoryList,
+  PlaceList,
+  BlogList,
   ProfileDetail,
 } from "../views";
 
@@ -85,6 +87,14 @@ export const router = createBrowserRouter([
       {
         path: "categories",
         element: <CategoryList />,
+      },
+      {
+        path: "places",
+        element: <PlaceList />,
+      },
+      {
+        path: "blogs",
+        element: <BlogList />,
       },
     ],
   },

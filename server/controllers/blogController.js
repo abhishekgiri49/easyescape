@@ -3,8 +3,20 @@ const Blog = require("../models/Blog");
 // Create a new blog
 const create = async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const newBlog = new Blog({ title, description });
+    const { title, description, status, categoryId, placeId } = req.body;
+    let updateFields = {
+      title,
+      description,
+      category: categoryId,
+      place: placeId,
+      status,
+    };
+    if (req.file && req.file.filename) {
+      updateFields.image = req.file.filename;
+    } else {
+      updateFields.image = null;
+    }
+    const newBlog = new Blog(updateFields);
     const savedBlog = await newBlog.save();
     res.status(201).json({ status: 201, message: "success", data: savedBlog });
   } catch (error) {
@@ -18,7 +30,8 @@ const create = async (req, res) => {
 // Get all blogs
 const getAll = async (req, res) => {
   try {
-    const blog = await Blog.find();
+    const blog = await Blog.find().populate(["category", "place"]);
+    // Sort by date descending
     res.status(200).json({ status: 201, data: blog, message: "success" });
   } catch (error) {
     console.error(error);
@@ -31,7 +44,10 @@ const getAll = async (req, res) => {
 // Get a specific blog by ID
 const getItemById = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Blog.findById(req.params.id).populate([
+      "category",
+      "place",
+    ]);
     if (!blog)
       return res
         .status(404)
@@ -48,10 +64,20 @@ const getItemById = async (req, res) => {
 // Update a Item by ID
 const updateItemById = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, status, categoryId, placeId } = req.body;
+    let updateFields = {
+      title,
+      description,
+      category: categoryId,
+      place: placeId,
+      status,
+    };
+    if (req.file && req.file.filename) {
+      updateFields.image = req.file.filename;
+    }
     const updatedBlog = await Blog.findByIdAndUpdate(
       req.params.id,
-      { title, description },
+      updateFields,
       { new: true }
     );
     if (!updatedBlog)
