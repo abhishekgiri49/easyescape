@@ -2,9 +2,9 @@ import { useEffect, useState, useMemo } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Breadcrumb, DataTable } from "../../components";
+import { Breadcrumb, DataTable, Alert } from "../../components";
 
-import { AdminService } from "../../../repositories";
+import { UserService } from "../../../repositories";
 import { UserAdd } from "../../../views";
 const List = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,13 +22,13 @@ const List = () => {
     phoneNumber: "",
   });
   const [errors, setErrors] = useState({});
-  const breadcrumb = [{ name: "Admin List" }];
+  const breadcrumb = [{ name: "User List" }];
   useEffect(() => {
     fetchAdminList();
   }, []);
 
   const fetchAdminList = () => {
-    AdminService.get().then((data) => {
+    UserService.get().then((data) => {
       setRows(data);
     });
   };
@@ -83,9 +83,11 @@ const List = () => {
   };
 
   const handleDeleteAction = (id) => {
-    AdminService.delete(id)
+    UserService.delete(id)
       .then(() => {
         fetchAdminList();
+        Alert("success", `User data has been deleted successfully`);
+        handleClose();
       })
       .catch((error) => {});
   };
@@ -96,6 +98,7 @@ const List = () => {
   };
   const handleOpenModal = () => {
     setShow(true);
+    handleClose();
   };
 
   const handleCloseModal = () => {
@@ -110,33 +113,55 @@ const List = () => {
     [clickedRow]
   );
   const handleModalSubmit = (formData) => {
-    AdminService.create(formData)
-      .then(() => {
-        setErrors({});
-        handleCloseModal();
-        // Optionally, you can redirect or perform other actions after successful addition
-      })
-      .catch((error) => {
-        if (error.status === 422) {
-          const newErrors = {};
-          error.data.data.forEach((item) => {
-            const fieldName = item.path;
-            const errorMsg = item.msg;
-            newErrors[fieldName] = errorMsg;
-          });
-          setErrors(newErrors);
-        } else {
-          setErrorMessage("Error adding Admin. Please try again.");
-        }
-      });
+    if (editMode) {
+      // If in edit mode, update existing admin
+      UserService.update(formData._id, formData)
+        .then(() => {
+          setErrors({});
+          handleCloseModal();
+          Alert("success", `User data has been updated successfully`);
+          fetchAdminList();
+          handleClose();
+          // Optionally, you can redirect or perform other actions after successful update
+        })
+        .catch((error) => {
+          handleErrors(error);
+        });
+    } else {
+      // If not in edit mode, create new admin
+      UserService.create(formData)
+        .then(() => {
+          setErrors({});
+          handleCloseModal();
+          Alert("success", `User data has been created successfully`);
+          fetchAdminList();
+          handleClose();
+          // Optionally, you can redirect or perform other actions after successful addition
+        })
+        .catch((error) => {
+          handleErrors(error);
+        });
+    }
     // Handle form submission logic here
   };
-
+  const handleErrors = (error) => {
+    if (error.status === 422) {
+      const newErrors = {};
+      error.data.data.forEach((item) => {
+        const fieldName = item.path;
+        const errorMsg = item.msg;
+        newErrors[fieldName] = errorMsg;
+      });
+      setErrors(newErrors);
+    } else {
+      setErrorMessage("Error performing. Please try again.");
+    }
+  };
   return (
     <div className="content-wrapper">
       <div className="content-header row">
         <div className="content-header-left col-md-9 col-12 mb-2">
-          <Breadcrumb routes={breadcrumb} title="Admin List" />
+          <Breadcrumb routes={breadcrumb} title="User List" />
         </div>
         <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
           <div className="mb-1 breadcrumb-right">

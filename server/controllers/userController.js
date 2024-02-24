@@ -14,7 +14,7 @@ const create = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      role: "Admin",
+      role: "User",
     });
     const savedUser = await newUser.save();
     res.status(201).json({ status: 201, message: "success", data: savedUser });
@@ -29,7 +29,7 @@ const create = async (req, res) => {
 // Get all users
 const getAll = async (req, res) => {
   try {
-    const users = await User.find({ role: "Admin" });
+    const users = await User.find({ role: "User" });
     res.status(200).json({ status: 200, data: users, message: "success" });
   } catch (error) {
     console.error(error);
@@ -42,7 +42,7 @@ const getAll = async (req, res) => {
 // Get a specific user by ID
 const getById = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: "req.params.id", role: "Admin" });
+    const user = await User.findOne({ _id: "req.params.id", role: "User" });
     if (!user)
       return res
         .status(404)
@@ -104,7 +104,7 @@ const deleteById = async (req, res) => {
   try {
     const deletedUser = await User.findOneAndDelete({
       _id: req.params.id,
-      role: "Admin",
+      role: "User",
     });
     if (!deletedUser)
       return res

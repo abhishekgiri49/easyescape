@@ -91,7 +91,16 @@ const validateUserUpdate = [
       }
     }),
   body("password")
-    .isLength({ min: 6 })
+    .optional()
+    .custom((value) => {
+      if (!value) {
+        // Password is null or empty, so it's valid
+        return true;
+      } else {
+        // Password is not null or empty, validate its length
+        return value.length >= 6;
+      }
+    })
     .withMessage("Password must be at least 6 characters long"),
   // Add more validation rules as needed
 ];

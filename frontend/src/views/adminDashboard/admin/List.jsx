@@ -2,8 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Breadcrumb, DataTable } from "../../components";
-
+import { Breadcrumb, DataTable, Alert } from "../../components";
 import { AdminService } from "../../../repositories";
 import { AdminAdd } from "../../../views";
 const List = () => {
@@ -24,10 +23,10 @@ const List = () => {
   const [errors, setErrors] = useState({});
   const breadcrumb = [{ name: "Admin List" }];
   useEffect(() => {
-    fetchAdminList();
+    fetchUserList();
   }, []);
 
-  const fetchAdminList = () => {
+  const fetchUserList = () => {
     AdminService.get().then((data) => {
       setRows(data);
     });
@@ -78,13 +77,16 @@ const List = () => {
     const rowIndex = rows.findIndex((row) => row._id === id);
     setFormData(rows[rowIndex]);
     setEditMode(true);
+    handleClose();
     setShow(true);
   };
 
   const handleDeleteAction = (id) => {
     AdminService.delete(id)
       .then(() => {
-        fetchAdminList();
+        fetchUserList();
+        Alert("success", `Admin has been deleted successfully`);
+        handleClose();
       })
       .catch((error) => {});
   };
@@ -95,6 +97,7 @@ const List = () => {
   };
   const handleOpenModal = () => {
     setShow(true);
+    handleClose();
   };
 
   const handleCloseModal = () => {
@@ -115,20 +118,12 @@ const List = () => {
         .then(() => {
           setErrors({});
           handleCloseModal();
+          Alert("success", `Admin data has been updated successfully`);
+          fetchUserList();
           // Optionally, you can redirect or perform other actions after successful update
         })
         .catch((error) => {
-          if (error.status === 422) {
-            const newErrors = {};
-            error.data.data.forEach((item) => {
-              const fieldName = item.path;
-              const errorMsg = item.msg;
-              newErrors[fieldName] = errorMsg;
-            });
-            setErrors(newErrors);
-          } else {
-            setErrorMessage("Error updating Admin. Please try again.");
-          }
+          handleErrors(error);
         });
     } else {
       // If not in edit mode, create new admin
@@ -136,24 +131,28 @@ const List = () => {
         .then(() => {
           setErrors({});
           handleCloseModal();
+          Alert("success", `Admin data has been created successfully`);
+          fetchUserList();
           // Optionally, you can redirect or perform other actions after successful addition
         })
         .catch((error) => {
-          if (error.status === 422) {
-            const newErrors = {};
-            error.data.data.forEach((item) => {
-              const fieldName = item.path;
-              const errorMsg = item.msg;
-              newErrors[fieldName] = errorMsg;
-            });
-            setErrors(newErrors);
-          } else {
-            setErrorMessage("Error adding Admin. Please try again.");
-          }
+          handleErrors(error);
         });
     }
   };
-
+  const handleErrors = (error) => {
+    if (error.status === 422) {
+      const newErrors = {};
+      error.data.data.forEach((item) => {
+        const fieldName = item.path;
+        const errorMsg = item.msg;
+        newErrors[fieldName] = errorMsg;
+      });
+      setErrors(newErrors);
+    } else {
+      setErrorMessage("Error performing. Please try again.");
+    }
+  };
   return (
     <div className="content-wrapper">
       <div className="content-header row">

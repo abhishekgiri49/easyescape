@@ -40,9 +40,9 @@ const Add = ({
 
   return (
     <>
-      <Modal show={show} onHide={onClose}>
+      <Modal size="lg" show={show} onHide={onClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{editMode ? "Edit Admin" : "Add New Admin"}</Modal.Title>
+          <Modal.Title>{editMode ? "Edit User" : "Add New User"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div id="addNewAddressForm" className="row gy-1 gx-2">

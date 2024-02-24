@@ -23,7 +23,11 @@ const Add = ({
   );
   useEffect(() => {
     if (initialFormData && editMode) {
-      setFormData(initialFormData);
+      const formDataCopy = { ...initialFormData };
+      // Remove the password key
+      formDataCopy.password = "";
+      // Set the formData state with the modified copy
+      setFormData(formDataCopy);
     }
   }, [initialFormData, editMode]);
   const handleChange = (e) => {
@@ -40,7 +44,7 @@ const Add = ({
 
   return (
     <>
-      <Modal show={show} onHide={onClose}>
+      <Modal size="lg" show={show} onHide={onClose}>
         <Modal.Header closeButton>
           <Modal.Title>{editMode ? "Edit Admin" : "Add New Admin"}</Modal.Title>
         </Modal.Header>
