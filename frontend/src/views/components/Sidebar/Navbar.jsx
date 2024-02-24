@@ -1,11 +1,52 @@
-import Wrapper from "../../../assets/wrappers/Navbar";
-import Logo from "../Logo";
+import { useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import { RiLockPasswordLine } from "react-icons/ri";
 import avatar from "../../../assets/images/avatar.svg";
 import { useDashboardContext } from "../../pages/layouts/DashboardLayout";
+import { ChangePassword } from "../../../views";
+
+import { AdminService } from "../../../repositories";
 const Navbar = () => {
   const { user, logoutUser } = useDashboardContext();
+  const [show, setShow] = useState(null);
+  const [errors, setErrors] = useState({});
+  const handleOpenModal = () => {
+    setShow(true);
+  };
 
+  const handleCloseModal = () => {
+    setShow(false);
+  };
+  const handleModalSubmit = (formData) => {
+    formData.userId = user._id;
+    // If not in edit mode, create new admin
+    AdminService.updatePassword(formData)
+      .then(() => {
+        setErrors({});
+        handleCloseModal();
+        Alert("success", `${Title} data has been created successfully`);
+
+        // Optionally, you can redirect or perform other actions after successful addition
+      })
+      .catch((error) => {
+        handleErrors(error);
+      });
+    // Handle form submission logic here
+  };
+  const handleErrors = (error) => {
+    if (error.status === 422) {
+      const newErrors = {};
+      error.data.data.forEach((item) => {
+        const fieldName = item.path;
+        const errorMsg = item.msg;
+        newErrors[fieldName] = errorMsg;
+      });
+      setErrors(newErrors);
+    } else {
+      Alert("error", `Error performing. Please try again.`);
+    }
+  };
   return (
     <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow">
       <div className="navbar-container d-flex content">
@@ -49,21 +90,23 @@ const Navbar = () => {
               className="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdown-user"
             >
-              <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="settings"></i> Settings
-              </a>
-              <a className="dropdown-item" href="#">
-                <i className="me-50" data-feather="credit-card"></i> Change
-                Password
-              </a>
+              <span className="dropdown-item" onClick={handleOpenModal}>
+                <RiLockPasswordLine className="me-50" /> Change Password
+              </span>
 
               <span className="dropdown-item" onClick={logoutUser}>
-                <i className="me-50" data-feather="power"></i> Logout
+                <IoMdLogOut className="me-50" /> Logout
               </span>
             </div>
           </li>
         </ul>
       </div>
+      <ChangePassword
+        onClose={handleCloseModal}
+        onSubmit={handleModalSubmit}
+        errors={errors}
+        show={show}
+      />
     </nav>
   );
 };

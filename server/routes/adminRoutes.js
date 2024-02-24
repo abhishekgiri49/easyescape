@@ -5,6 +5,7 @@ const { verifyToken, isAdmin } = require("../middlewares/auth");
 const {
   validateRegistration,
   validateUserUpdate,
+  validateChangePassword,
   validate,
 } = require("../middlewares/validator");
 const {
@@ -13,6 +14,7 @@ const {
   getById,
   updateById,
   deleteById,
+  changePassword,
 } = require("../controllers/adminController");
 
 // Create a new  (requires token validation)
@@ -36,5 +38,15 @@ router.put(
 
 // Delete a  by ID (requires token validation)
 router.delete("/:id", verifyToken, isAdmin, deleteById);
+
+// Create a new  (requires token validation)
+router.post(
+  "/password",
+  verifyToken,
+  isAdmin,
+  validateChangePassword,
+  validate,
+  changePassword
+);
 
 module.exports = router;

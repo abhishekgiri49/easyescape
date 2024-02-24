@@ -89,7 +89,7 @@ const AdminService = {
 
   updatePassword(payload) {
     return new Promise((resolve, reject) => {
-      Repository.post(`/update/password`, payload)
+      Repository.post(`${resource}/password`, payload)
         .then((response) => {
           resolve(response.data.data);
         })

@@ -107,9 +107,9 @@ const deleteById = async (req, res) => {
       role: "Admin",
     });
     if (!deletedUser)
-      return res
-        .status(404)
-        .json({ status: 404, data: [], message: "User not found" });
+      res
+        .status(500)
+        .json({ status: 500, data: [], message: "Internal Server Error" });
     res.json({ status: 200, data: [], message: "User Deleted" });
   } catch (error) {
     console.error(error);
@@ -118,11 +118,57 @@ const deleteById = async (req, res) => {
       .json({ status: 500, data: [], message: "Internal Server Error" });
   }
 };
+const changePassword = async (req, res) => {
+  try {
+    const { userId, currentPassword, newPassword } = req.body;
 
+    // Fetch user from database
+    const user = await User.findById(userId);
+    // Check if user exists
+    if (!user) {
+      res
+        .status(404)
+        .json({ status: 404, data: [], message: "Internal Server Error" });
+    }
+
+    // Verify current password
+    const isPasswordValid = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+    if (!isPasswordValid) {
+      res.status(401).json({
+        status: 401,
+        data: [],
+        message: "Current password is incorrect",
+      });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password in the database
+    user.password = hashedNewPassword;
+    await user.save();
+
+    // Password changed successfully
+    res.json({
+      status: 200,
+      data: [],
+      message: "Password changed successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ status: 500, data: [], message: "Internal Server Error" });
+  }
+};
 module.exports = {
   create,
   getAll,
   getById,
   updateById,
   deleteById,
+  changePassword,
 };

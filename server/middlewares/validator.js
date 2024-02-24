@@ -37,7 +37,14 @@ const validateLogin = [
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long"),
 ];
-
+const validateChangePassword = [
+  body("newPassword")
+    .isLength({ min: 6 })
+    .withMessage("new password must be at least 3 characters long"),
+  body("currentPassword")
+    .isLength({ min: 6 })
+    .withMessage("Current Password must be at least 6 characters long"),
+];
 const validateCategory = [
   body("title")
     .isLength({ min: 3 })
@@ -135,5 +142,6 @@ module.exports = {
   validatePlace,
   validateBlog,
   validateUserUpdate,
+  validateChangePassword,
   validate,
 };

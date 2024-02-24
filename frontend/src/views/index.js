@@ -24,3 +24,5 @@ export { default as PlaceAdd } from "./adminDashboard/places/Add";
 
 export { default as BlogList } from "./adminDashboard/blogs/List";
 export { default as BlogAdd } from "./adminDashboard/blogs/Add";
+
+export { default as ChangePassword } from "./adminDashboard/admin/ChangePassword";
