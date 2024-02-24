@@ -17,13 +17,6 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-          <ul className="nav navbar-nav">
-            <li className="nav-item d-none d-lg-block">
-              <a className="nav-link nav-link-style">
-                <i className="ficon" data-feather="moon"></i>
-              </a>
-            </li>
-          </ul>
         </div>
         <ul className="nav navbar-nav align-items-center ms-auto">
           <li className="nav-item dropdown dropdown-user">

@@ -4,9 +4,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Breadcrumb, DataTable, Alert } from "../../components";
 
-import { UserService } from "../../../repositories";
-import { UserAdd } from "../../../views";
+import { CategoryService } from "../../../repositories";
+import { CategoryAdd } from "../../../views";
 const List = () => {
+  const Title = "Category";
   const [anchorEl, setAnchorEl] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [clickedRow, setClickedRow] = useState(null);
@@ -14,32 +15,48 @@ const List = () => {
   const [rows, setRows] = useState([]);
   const [formData, setFormData] = useState({
     _id: null,
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
+    title: "",
+    description: "",
+    status: "",
   });
   const [errors, setErrors] = useState({});
-  const breadcrumb = [{ name: "User List" }];
+  const breadcrumb = [{ name: `${Title} List` }];
   useEffect(() => {
-    fetchUserList();
+    fetchCategoryList();
   }, []);
 
-  const fetchUserList = () => {
-    UserService.get().then((data) => {
+  const fetchCategoryList = () => {
+    CategoryService.get().then((data) => {
       setRows(data);
     });
   };
 
   const columns = [
-    { field: "firstName", headerName: "First name", width: 200 },
-    { field: "lastName", headerName: "Last name", width: 200 },
-    { field: "username", headerName: "Username", width: 200 },
-    { field: "phoneNumber", headerName: "Phone Number", width: 200 },
-    { field: "email", headerName: "Email", width: 200 },
-    { field: "role", headerName: "Role", width: 200 },
+    { field: "title", headerName: "Title", width: 200 },
+    { field: "description", headerName: "Description", width: 400 },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 300,
+      renderCell: (params) =>
+        params.row.status === "1" ? (
+          <span className="badge badge-glow bg-primary">Active</span>
+        ) : (
+          <span className="badge badge-glow bg-danger">Inactive</span>
+        ),
+    },
+    {
+      field: "image",
+      headerName: "Thumbnail",
+      width: 300,
+      renderCell: (params) => (
+        <img
+          src={`/src/assets/uploads/categories/${params.row.image}`}
+          alt=""
+          style={{ height: 50, width: "auto" }}
+        />
+      ),
+    },
     {
       field: "actions",
       headerName: "Actions",
@@ -71,23 +88,22 @@ const List = () => {
     },
   ];
   const handleClose = () => {
-    console.log("close");
     setAnchorEl(null);
   };
 
   const handleEditAction = (id) => {
     const rowIndex = rows.findIndex((row) => row._id === id);
+    handleClose();
     setFormData(rows[rowIndex]);
     setEditMode(true);
-    handleClose();
     setShow(true);
   };
 
   const handleDeleteAction = (id) => {
-    UserService.delete(id)
+    CategoryService.delete(id)
       .then(() => {
-        fetchUserList();
-        Alert("success", `User data has been deleted successfully`);
+        fetchCategoryList();
+        Alert("success", `${Title} has been deleted successfully`);
         handleClose();
       })
       .catch((error) => {});
@@ -116,12 +132,12 @@ const List = () => {
   const handleModalSubmit = (formData) => {
     if (editMode) {
       // If in edit mode, update existing admin
-      UserService.update(formData._id, formData)
+      CategoryService.update(clickedRow, formData)
         .then(() => {
           setErrors({});
           handleCloseModal();
-          Alert("success", `User data has been updated successfully`);
-          fetchUserList();
+          Alert("success", `${Title} has been updated successfully`);
+          fetchCategoryList();
           handleClose();
           // Optionally, you can redirect or perform other actions after successful update
         })
@@ -130,12 +146,12 @@ const List = () => {
         });
     } else {
       // If not in edit mode, create new admin
-      UserService.create(formData)
+      CategoryService.create(formData)
         .then(() => {
           setErrors({});
           handleCloseModal();
-          Alert("success", `User data has been created successfully`);
-          fetchUserList();
+          Alert("success", `${Title} data has been created successfully`);
+          fetchCategoryList();
           handleClose();
           // Optionally, you can redirect or perform other actions after successful addition
         })
@@ -155,14 +171,14 @@ const List = () => {
       });
       setErrors(newErrors);
     } else {
-      setErrorMessage("Error performing. Please try again.");
+      Alert("error", `Error performing. Please try again.`);
     }
   };
   return (
     <div className="content-wrapper">
       <div className="content-header row">
         <div className="content-header-left col-md-9 col-12 mb-2">
-          <Breadcrumb routes={breadcrumb} title="User List" />
+          <Breadcrumb routes={breadcrumb} title={`${Title} Management`} />
         </div>
         <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
           <div className="mb-1 breadcrumb-right">
@@ -189,7 +205,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <UserAdd
+      <CategoryAdd
         editMode={editMode}
         initialFormData={formData}
         onClose={handleCloseModal}

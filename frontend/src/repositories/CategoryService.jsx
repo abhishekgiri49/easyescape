@@ -1,14 +1,14 @@
-import Repository from './Repository';
-const resource = '/secured/categories';
+import { Repository, FileUploadRepository } from "./../repositories";
+const resource = "/secured/categories";
 
 const CategoryService = {
   get() {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -16,10 +16,10 @@ const CategoryService = {
   getforpublic() {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -27,10 +27,10 @@ const CategoryService = {
   find(id) {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/${id}`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -38,11 +38,11 @@ const CategoryService = {
 
   create(payload) {
     return new Promise((resolve, reject) => {
-      Repository.post(`${resource}/`, payload)
-        .then(response => {
+      FileUploadRepository.post(`${resource}/`, payload)
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -50,11 +50,11 @@ const CategoryService = {
 
   update(id, payload) {
     return new Promise((resolve, reject) => {
-      Repository.put(`${resource}/${id}`, payload)
-        .then(response => {
+      FileUploadRepository.put(`${resource}/${id}`, payload)
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -63,16 +63,14 @@ const CategoryService = {
   delete(id) {
     return new Promise((resolve, reject) => {
       Repository.delete(`${resource}/${id}`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
   },
-
-  
 };
 
 export default CategoryService;

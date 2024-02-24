@@ -18,7 +18,7 @@ const Add = ({
       email: "",
       password: "",
       phoneNumber: "",
-      role: "Admin",
+      role: "User",
     }
   );
   useEffect(() => {

@@ -3,6 +3,7 @@ import React from "react";
 import { ImProfile } from "react-icons/im";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaCottonBureau } from "react-icons/fa";
+import { BiCategory } from "react-icons/bi";
 
 const Links = [
   { text: "Dashboard", path: ".", icon: <FaCottonBureau />, subNav: [] },
@@ -33,16 +34,24 @@ const Links = [
   //   ],
   // },
   {
+    text: "Admin",
+    path: "admin",
+    icon: <MdAdminPanelSettings />,
+    status: false,
+    subNav: [],
+  },
+  {
     text: "Users",
     path: "users",
     icon: <ImProfile />,
     status: false,
     subNav: [],
   },
+
   {
-    text: "Admin",
-    path: "admin",
-    icon: <MdAdminPanelSettings />,
+    text: "Categories",
+    path: "categories",
+    icon: <BiCategory />,
     status: false,
     subNav: [],
   },

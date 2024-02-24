@@ -15,3 +15,6 @@ export { default as UserList } from "./adminDashboard/users/List";
 export { default as UserAdd } from "./adminDashboard/users/Add";
 export { default as ProfileDetail } from "./userDashboard/Profile/Detail";
 export { default as Search } from "./pages/home/Search";
+
+export { default as CategoryList } from "./adminDashboard/categories/List";
+export { default as CategoryAdd } from "./adminDashboard/categories/Add";

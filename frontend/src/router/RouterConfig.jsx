@@ -13,6 +13,7 @@ import {
   UserList,
   Stats,
   Search,
+  CategoryList,
   ProfileDetail,
 } from "../views";
 
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "admin",
         element: <AdminList />,
+      },
+      {
+        path: "categories",
+        element: <CategoryList />,
       },
     ],
   },

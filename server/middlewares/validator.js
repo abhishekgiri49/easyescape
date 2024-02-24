@@ -45,6 +45,8 @@ const validateCategory = [
   body("description")
     .isLength({ min: 6 })
     .withMessage("Description must be at least 6 characters long"),
+  body("status").notEmpty().withMessage("Status cannot be unchecked."),
+  body("image").notEmpty().withMessage("Please upload image to proceed."),
 ];
 
 const validatePlace = [
