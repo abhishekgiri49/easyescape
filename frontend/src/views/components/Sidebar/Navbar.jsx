@@ -6,6 +6,7 @@ import avatar from "../../../assets/images/avatar.svg";
 import { useDashboardContext } from "../../pages/layouts/DashboardLayout";
 import { ChangePassword } from "../../../views";
 
+import { Alert } from "../../components";
 import { AdminService } from "../../../repositories";
 const Navbar = () => {
   const { user, logoutUser } = useDashboardContext();
@@ -25,11 +26,12 @@ const Navbar = () => {
       .then(() => {
         setErrors({});
         handleCloseModal();
-        Alert("success", `${Title} data has been created successfully`);
-
+        Alert("success", `Password has been changed  successfully.`);
+        logoutUser();
         // Optionally, you can redirect or perform other actions after successful addition
       })
       .catch((error) => {
+        console.log(error);
         handleErrors(error);
       });
     // Handle form submission logic here
