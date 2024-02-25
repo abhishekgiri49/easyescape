@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import { FaAlignJustify } from "react-icons/fa";
+import { Breadcrumb, DataTable, Alert } from "../../components";
+import { Link } from "react-router-dom";
+import { PackageService } from "../../../repositories";
 import {
-  Carousel,
   FilterSidebar,
   PackageCard,
   Pagination,
-  Footer,
   SearchBar,
 } from "../../components";
 
@@ -13,7 +13,6 @@ const Search = () => {
   return (
     <>
       <div className="flex flex-wrap w-full h-screen"></div>
-
       <SearchBar />
       <div className="content-wrapper container-xxl p-0">
         <div className="content-detached content-right">
@@ -33,31 +32,7 @@ const Search = () => {
                           <FaAlignJustify />
                         </span>
                       </button>
-                      <div className="search-results">16285 results found</div>
-                    </div>
-                    <div className="view-options d-flex">
-                      <div className="btn-group dropdown-sort">
-                        <button
-                          type="button"
-                          className="btn btn-outline-primary dropdown-toggle me-1"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span className="active-sorting">Featured</span>
-                        </button>
-                        <div className="dropdown-menu">
-                          <a className="dropdown-item" href="#">
-                            Featured
-                          </a>
-                          <a className="dropdown-item" href="#">
-                            Lowest
-                          </a>
-                          <a className="dropdown-item" href="#">
-                            Highest
-                          </a>
-                        </div>
-                      </div>
+                      <div className="search-results">0 results found</div>
                     </div>
                   </div>
                 </div>

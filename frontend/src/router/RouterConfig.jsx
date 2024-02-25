@@ -6,6 +6,7 @@ import {
   Register,
   Login,
   ForgotPassword,
+  ResetPassword,
   UserDashboardLayout,
   DashboardLayout,
   Error,
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "password-reset",
+        element: <ResetPassword />,
       },
     ],
   },

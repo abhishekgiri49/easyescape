@@ -23,11 +23,12 @@ export { default as PackageAdd } from "./adminDashboard/packages/Add";
 export { default as PackageDetail } from "./adminDashboard/packages/Detail";
 
 export { default as ProfileDetail } from "./userDashboard/Profile/Detail";
+
 export { default as Search } from "./pages/home/Search";
 export { default as Register } from "./pages/auth/Register";
 export { default as Login } from "./pages/auth/Login";
-
 export { default as ForgotPassword } from "./pages/auth/ForgotPassword";
+export { default as ResetPassword } from "./pages/auth/ResetPassword";
 export { default as Error } from "./pages/utils/Error";
 export { default as Stats } from "./pages/utils/Stats";
 export { default as Landing } from "./pages/Landing";

@@ -5,7 +5,7 @@ import "../../../assets/css/pages/authentication.css";
 import { AuthService } from "../../../repositories";
 import { useNavigate } from "react-router-dom";
 import { AuthUser } from "./../../../helper/AuthUser";
-const Login = () => {
+const ForgotPassword = () => {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -79,4 +79,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default ForgotPassword;
