@@ -1,8 +1,7 @@
 import React from "react";
 
-import { ImProfile } from "react-icons/im";
 import { MdAdminPanelSettings, MdPlace } from "react-icons/md";
-import { FaCottonBureau, FaBlog } from "react-icons/fa";
+import { FaCottonBureau, FaBlog, FaUser } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 
 const Links = [
@@ -43,7 +42,7 @@ const Links = [
   {
     text: "Users",
     path: "users",
-    icon: <ImProfile />,
+    icon: <FaUser />,
     status: false,
     subNav: [],
   },

@@ -162,7 +162,7 @@ const List = () => {
     <div className="content-wrapper">
       <div className="content-header row">
         <div className="content-header-left col-md-9 col-12 mb-2">
-          <Breadcrumb routes={breadcrumb} title="User List" />
+          <Breadcrumb routes={breadcrumb} title="User Management" />
         </div>
         <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
           <div className="mb-1 breadcrumb-right">
