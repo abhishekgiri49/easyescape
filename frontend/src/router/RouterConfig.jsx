@@ -16,7 +16,9 @@ import {
   CategoryList,
   PlaceList,
   BlogList,
+  PackageList,
   ProfileDetail,
+  PackageDetail,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -95,6 +97,14 @@ export const router = createBrowserRouter([
       {
         path: "blogs",
         element: <BlogList />,
+      },
+      {
+        path: "packages",
+        element: <PackageList />,
+      },
+      {
+        path: "packages/detail/:packageId",
+        element: <PackageDetail />,
       },
     ],
   },

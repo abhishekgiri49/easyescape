@@ -6,3 +6,4 @@ export { default as Repository } from "./Repository";
 export { default as UserService } from "./UserService";
 export { default as AdminService } from "./AdminService";
 export { default as PlaceService } from "./PlaceService";
+export { default as PackageService } from "./PackageService";
