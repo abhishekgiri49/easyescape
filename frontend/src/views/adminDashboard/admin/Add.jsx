@@ -1,16 +1,35 @@
 // Modal.jsx
 
-import React, { useState } from "react";
-
-const Add = ({ onClose, onSubmit }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    role: "Admin",
-    // ... other fields
-  });
-
+import React, { useState, useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
+const Add = ({
+  editMode,
+  initialFormData,
+  onClose,
+  onSubmit,
+  errors,
+  show,
+}) => {
+  const [formData, setFormData] = useState(
+    initialFormData || {
+      firstName: "",
+      lastName: "",
+      username: "",
+      email: "",
+      password: "",
+      phoneNumber: "",
+      role: "Admin",
+    }
+  );
+  useEffect(() => {
+    if (initialFormData && editMode) {
+      const formDataCopy = { ...initialFormData };
+      // Remove the password key
+      formDataCopy.password = "";
+      // Set the formData state with the modified copy
+      setFormData(formDataCopy);
+    }
+  }, [initialFormData, editMode]);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -24,94 +43,133 @@ const Add = ({ onClose, onSubmit }) => {
   };
 
   return (
-    <div
-      className="modal fade"
-      id="addNewAddressModal"
-      tabIndex="-1"
-      aria-labelledby="addNewAddressTitle"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog modal-dialog-centered modal-lg">
-        <div className="modal-content">
-          <div className="modal-header bg-transparent">
-            <button
-              type="button"
-              className="btn-close"
-              aria-label="Close"
-              onClick={onClose}
-            ></button>
-          </div>
-          <div className="modal-body pb-5 px-sm-4 mx-50">
-            <h1
-              className="address-title text-center mb-1"
-              id="addNewAddressTitle"
-            >
-              Add Admin
-            </h1>
-
-            <div id="addNewAddressForm" className="row gy-1 gx-2">
-              <div className="col-12 col-md-6">
-                <label className="form-label">First Name</label>
-                <input
-                  type="text"
-                  id="modalAddressFirstName"
-                  name="firstName"
-                  className="form-control"
-                  placeholder="John"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  data-msg="Please enter your first name"
-                />
-              </div>
-              <div className="col-12 col-md-6">
-                <label className="form-label">Last Name</label>
-                <input
-                  type="text"
-                  id="modalAddressLastName"
-                  name="lastName"
-                  className="form-control"
-                  placeholder="Doe"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  data-msg="Please enter your last name"
-                />
-              </div>
-
-              <div className="col-12">
-                <label className="form-label">Email</label>
-                <input
-                  type="text"
-                  id="modalEmail"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="abc@example.com"
-                />
-              </div>
-
-              <div className="col-12 text-center">
-                <button
-                  type="submit"
-                  onClick={handleSubmit}
-                  className="btn btn-primary me-1 mt-2"
-                >
-                  Submit
-                </button>
-                <button
-                  type="reset"
-                  className="btn btn-outline-secondary mt-2"
-                  aria-label="Close"
-                  onClick={onClose}
-                >
-                  Discard
-                </button>
-              </div>
+    <>
+      <Modal size="lg" show={show} onHide={onClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{editMode ? "Edit Admin" : "Add New Admin"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div id="addNewAddressForm" className="row gy-1 gx-2">
+            <div className="col-12 col-md-6">
+              <label className="form-label">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                className="form-control"
+                placeholder="John"
+                value={formData.firstName}
+                onChange={handleChange}
+                data-msg="Please enter your first name"
+              />
+              {errors && errors.hasOwnProperty("firstName") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.firstName}
+                </span>
+              )}
+            </div>
+            <div className="col-12 col-md-6">
+              <label className="form-label">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                className="form-control"
+                placeholder="Doe"
+                value={formData.lastName}
+                onChange={handleChange}
+                data-msg="Please enter your last name"
+              />
+              {errors && errors.hasOwnProperty("lastName") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.lastName}
+                </span>
+              )}
+            </div>
+            <div className="col-12 col-md-6">
+              <label className="form-label">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="abc@123"
+              />
+              {errors && errors.hasOwnProperty("username") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.username}
+                </span>
+              )}
+            </div>
+            <div className="col-12 col-md-6">
+              <label className="form-label">Phone Number</label>
+              <input
+                type="text"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="123456789"
+              />
+              {errors && errors.hasOwnProperty("phoneNumber") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.phoneNumber}
+                </span>
+              )}
+            </div>
+            <div className="col-12 col-md-6">
+              <label className="form-label">Email</label>
+              <input
+                type="text"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="abc@example.com"
+              />
+              {errors && errors.hasOwnProperty("email") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.email}
+                </span>
+              )}
+            </div>
+            <div className="col-12 col-md-6">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="form-control"
+              />
+              {errors && errors.hasOwnProperty("password") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.password}
+                </span>
+              )}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="col-12 text-center">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn btn-primary me-1 mt-2"
+            >
+              Submit
+            </button>
+            <button
+              type="reset"
+              className="btn btn-outline-secondary mt-2"
+              aria-label="Close"
+              onClick={onClose}
+            >
+              Discard
+            </button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

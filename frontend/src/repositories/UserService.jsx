@@ -1,15 +1,15 @@
-import Repository from './Repository';
+import Repository from "./Repository";
 
-const resource = '/public/auth';
+const resource = "/secured/user";
 
 const UserService = {
   get() {
     return new Promise((resolve, reject) => {
-      Repository.get(`${resource}/list`)
-        .then(response => {
+      Repository.get(`${resource}/`)
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -18,10 +18,10 @@ const UserService = {
   find(id) {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/${id}`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -30,10 +30,10 @@ const UserService = {
   create(payload) {
     return new Promise((resolve, reject) => {
       Repository.post(`${resource}`, payload)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -41,11 +41,11 @@ const UserService = {
 
   update(id, payload) {
     return new Promise((resolve, reject) => {
-      Repository.post(`${resource}/${id}`, payload)
-        .then(response => {
+      Repository.put(`${resource}/${id}`, payload)
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -53,11 +53,11 @@ const UserService = {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      Repository.get(`${resource}/delete/${id}`)
-        .then(response => {
+      Repository.delete(`${resource}/${id}`)
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -66,32 +66,22 @@ const UserService = {
   view(id) {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/profile`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
   },
-  getLoggedinUser() {
-    return new Promise((resolve, reject) => {
-      Repository.get(`/secured/current-user`)
-        .then(response => {
-          resolve(response.data.data);
-        })
-        .catch(error => {
-          reject(error.response);
-        });
-    });
-  },
+
   updateProfile(payload) {
     return new Promise((resolve, reject) => {
       Repository.post(`/update/profile`, payload)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -100,10 +90,10 @@ const UserService = {
   updatePassword(payload) {
     return new Promise((resolve, reject) => {
       Repository.post(`/update/password`, payload)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });

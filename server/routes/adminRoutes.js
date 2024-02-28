@@ -2,13 +2,19 @@ const express = require("express");
 const router = express.Router();
 const { verifyToken, isAdmin } = require("../middlewares/auth");
 
-const { validateRegistration, validate } = require("../middlewares/validator");
+const {
+  validateRegistration,
+  validateUserUpdate,
+  validateChangePassword,
+  validate,
+} = require("../middlewares/validator");
 const {
   create,
   getAll,
   getById,
   updateById,
   deleteById,
+  changePassword,
 } = require("../controllers/adminController");
 
 // Create a new  (requires token validation)
@@ -25,12 +31,22 @@ router.put(
   "/:id",
   verifyToken,
   isAdmin,
-  validateRegistration,
+  validateUserUpdate,
   validate,
   updateById
 );
 
 // Delete a  by ID (requires token validation)
 router.delete("/:id", verifyToken, isAdmin, deleteById);
+
+// Create a new  (requires token validation)
+router.post(
+  "/password",
+  verifyToken,
+  isAdmin,
+  validateChangePassword,
+  validate,
+  changePassword
+);
 
 module.exports = router;

@@ -4,3 +4,6 @@ export { default as CategoryService } from "./CategoryService";
 export { default as FileUploadRepository } from "./FileUploadRepository";
 export { default as Repository } from "./Repository";
 export { default as UserService } from "./UserService";
+export { default as AdminService } from "./AdminService";
+export { default as PlaceService } from "./PlaceService";
+export { default as PackageService } from "./PackageService";
