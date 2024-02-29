@@ -246,7 +246,7 @@ const List = () => {
             >
               Create New
             </button> */}
-            <Link to={`List`} className="button">Create new</Link>
+            <Link to={`add`} className="btn btn-primary">Create new</Link>
           </div>
         </div>
       </div>
