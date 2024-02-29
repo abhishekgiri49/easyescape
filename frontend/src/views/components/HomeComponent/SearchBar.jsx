@@ -4,17 +4,33 @@ import { useNavigate, useLocation } from "react-router-dom";
 const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [formData, setFormData] = useState({
-    place: "",
-    checkInDate: "",
-    checkOutDate: "",
-    numberOfPeople: "",
-  });
+  const [formData, setFormData] = useState({});
   useEffect(() => {
     fetchSearchParameter();
   }, []); // eslint-disable-line react
   const fetchSearchParameter = () => {
     const searchParams = new URLSearchParams(location.search);
+    if (searchParams.has("place")) {
+      setFormData((prev) => ({ ...prev, place: searchParams.get("place") }));
+    }
+    if (searchParams.has("checkInDate")) {
+      setFormData((prev) => ({
+        ...prev,
+        checkInDate: searchParams.get("checkInDate"),
+      }));
+    }
+    if (searchParams.has("checkOutDate")) {
+      setFormData((prev) => ({
+        ...prev,
+        checkOutDate: searchParams.get("checkOutDate"),
+      }));
+    }
+    if (searchParams.has("numberOfPeople")) {
+      setFormData((prev) => ({
+        ...prev,
+        numberOfPeople: searchParams.get("numberOfPeople"),
+      }));
+    }
     // formData.place = searchParams.get("place");
   };
   // Handles the onChange event of each input field.

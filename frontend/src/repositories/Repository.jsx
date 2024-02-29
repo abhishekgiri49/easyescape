@@ -12,7 +12,7 @@ if (getToken()) {
     baseURL: baseEndpoint,
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
+      Authorization: `${getToken()}`,
     },
   });
 } else {
