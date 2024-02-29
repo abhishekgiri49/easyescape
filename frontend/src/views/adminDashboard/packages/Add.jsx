@@ -83,10 +83,10 @@ const Add = ({
     <>
     <div className="content-wrapper">
       <div className="content-header row">
-        <div className="content-header-left col-md-9 col-12 mb-2">
+        <div className="content-header-left col-md-9 col-12 mb-1">
           <Breadcrumb routes={breadcrumb} title={`${Title} Management`} />
         </div>
-        
+        <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
         <div className="mb-1 breadcrumb-right">
             {/* <button
               type="button"
@@ -95,9 +95,9 @@ const Add = ({
             >
               Create New
             </button> */}
-            {/* <Link to={`../packages/List`} className="button">go back</Link> */}
+          <Link to={`../packages`} className=" btn btn-primary">go back</Link>
           </div>
-
+          </div>
       </div>
       <div className="content-body">
         <div className="row">
