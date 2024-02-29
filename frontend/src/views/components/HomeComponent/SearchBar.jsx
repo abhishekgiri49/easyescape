@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const SearchBar = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState([]);
+  const location = useLocation();
+  const [formData, setFormData] = useState({
+    place: "",
+    checkInDate: "",
+    checkOutDate: "",
+    numberOfPeople: "",
+  });
+  useEffect(() => {
+    fetchSearchParameter();
+  }, []); // eslint-disable-line react
+  const fetchSearchParameter = () => {
+    const searchParams = new URLSearchParams(location.search);
+    // formData.place = searchParams.get("place");
+  };
+  // Handles the onChange event of each input field.
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const search = () => {
-    navigate("/search");
+    const searchParams = new URLSearchParams(formData);
+    navigate("/search?" + searchParams.toString());
   };
   return (
     <div className="searchcontainer">
@@ -22,9 +44,9 @@ const SearchBar = () => {
             <input
               type="text"
               id="cities"
-              name="cities"
-              size="20"
-              value=""
+              name="place"
+              value={formData.place}
+              onChange={handleChange}
               placeholder="Paris, France"
               required
             />
@@ -34,14 +56,20 @@ const SearchBar = () => {
             <input
               type="date"
               id="start"
-              name="trip"
-              value="2018-07-22"
-              min="2018-01-01"
-              max="2018-12-31"
+              name="checkInDate"
+              min="2024-01-01"
+              value={formData.checkInDate}
+              onChange={handleChange}
             />
 
             <label>ADULTS</label>
-            <input list="adults" id="adults-number" name="adults-number" />
+            <input
+              list="adults"
+              id="adults-number"
+              name="numberOfPeople"
+              value={formData.numberOfPeople}
+              onChange={handleChange}
+            />
             <datalist id="adults">
               <option value="1 adult" />
               <option value="2 adults" />
@@ -55,10 +83,10 @@ const SearchBar = () => {
             <input
               type="date"
               id="end"
-              name="trip"
-              value="2019-07-29"
-              min="2019-01-01"
-              max="2019-12-31"
+              name="checkOutDate"
+              min="2024-01-01"
+              value={formData.checkOutDate}
+              onChange={handleChange}
             />
             <label>CHILDREN</label>
             <input

@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
 import { Breadcrumb, DataTable, Alert } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PackageService } from "../../../repositories";
 import {
   FilterSidebar,
@@ -10,6 +11,26 @@ import {
 } from "../../components";
 
 const Search = () => {
+  const [packages, setPackages] = useState([]);
+  const [formData, setFormData] = useState([]);
+  const location = useLocation();
+  useEffect(() => {
+    try {
+      fetchSearchParameter();
+      fetchList();
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }, [formData]);
+  const fetchList = () => {
+    PackageService.getPackageWithFilters(formData).then((data) => {
+      setPackages(data);
+    });
+  };
+  const fetchSearchParameter = () => {
+    const searchParams = new URLSearchParams(location.search);
+    formData.place = searchParams.get("place");
+  };
   return (
     <>
       <div className="flex flex-wrap w-full h-screen"></div>
@@ -32,7 +53,9 @@ const Search = () => {
                           <FaAlignJustify />
                         </span>
                       </button>
-                      <div className="search-results">0 results found</div>
+                      <div className="search-results">
+                        {packages.length} results found
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -42,11 +65,9 @@ const Search = () => {
             <div className="body-content-overlay"></div>
 
             <section id="ecommerce-products" className="grid-view">
-              <PackageCard />
-              <PackageCard />
-              <PackageCard />
-              <PackageCard />
-              <PackageCard />
+              {packages.map((packageData, index) => (
+                <PackageCard key={index} packageData={packageData} />
+              ))}
             </section>
             <Pagination />
           </div>
