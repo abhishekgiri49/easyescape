@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
+import { PackageList } from "../../../views";
 import { CategoryService, PlaceService } from "../../../repositories";
-import { CKEditorComponent } from "../../components";
+import { CKEditorComponent,Breadcrumb } from "../../components";
 const Add = ({
   editMode,
   initialFormData,
@@ -17,6 +19,10 @@ const Add = ({
   const [content, setContent] = useState(null);
   const [place, setPlace] = useState([]);
   const [category, setCategory] = useState([]);
+  const breadcrumb = [
+    { path: "/packages", name: `${Title} List` },
+    { name: `Add` },
+  ];
   const [formData, setFormData] = useState(
     initialFormData || {
       _id: "",
@@ -75,14 +81,30 @@ const Add = ({
 
   return (
     <>
-      <Modal size="lg" show={show} onHide={onClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {editMode ? `Edit ${Title}` : `Add New ${Title}`}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div id="addNewAddressForm" className="row gy-1 gx-2">
+    <div className="content-wrapper">
+      <div className="content-header row">
+        <div className="content-header-left col-md-9 col-12 mb-2">
+          <Breadcrumb routes={breadcrumb} title={`${Title} Management`} />
+        </div>
+        
+        <div className="mb-1 breadcrumb-right">
+            {/* <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleOpenModal}
+            >
+              Create New
+            </button> */}
+            {/* <Link to={`../packages/List`} className="button">go back</Link> */}
+          </div>
+
+      </div>
+      <div className="content-body">
+        <div className="row">
+          <div className="col-12">
+            <section className="invoice-list-wrapper">
+              <div className="card">
+              <div id="addNewAddressForm" className="row gy-1 gx-2">
             <div className="col-12">
               <label className="form-label">Title</label>
               <input
@@ -277,27 +299,14 @@ const Add = ({
               )}
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <div className="col-12 text-center">
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="btn btn-primary me-1 mt-2"
-            >
-              Submit
-            </button>
-            <button
-              type="reset"
-              className="btn btn-outline-secondary mt-2"
-              aria-label="Close"
-              onClick={onClose}
-            >
-              Discard
-            </button>
+              </div>
+            </section>
           </div>
-        </Modal.Footer>
-      </Modal>
+        </div>
+      </div>
+      
+    </div>
+      
     </>
   );
 };

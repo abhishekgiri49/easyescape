@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Breadcrumb, DataTable, Alert } from "../../components";
 import { Link } from "react-router-dom";
 import { PackageService } from "../../../repositories";
-import { PackageAdd } from "../../../views";
+import { PackageAdd } from "../../../views/";
 const List = () => {
   const Title = "Package";
   const [anchorEl, setAnchorEl] = useState(null);
@@ -239,13 +239,14 @@ const List = () => {
         </div>
         <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
           <div className="mb-1 breadcrumb-right">
-            <button
+            {/* <button
               type="button"
               className="btn btn-primary"
               onClick={handleOpenModal}
             >
               Create New
-            </button>
+            </button> */}
+            <Link to={`List`} className="button">Create new</Link>
           </div>
         </div>
       </div>
@@ -262,14 +263,14 @@ const List = () => {
           </div>
         </div>
       </div>
-      <PackageAdd
+      {/* <PackageAdd
         editMode={editMode}
         initialFormData={formData}
         onClose={handleCloseModal}
         onSubmit={handleModalSubmit}
         errors={errors}
         show={show}
-      />
+      /> */}
     </div>
   );
 };

@@ -18,6 +18,7 @@ import {
   PlaceList,
   BlogList,
   PackageList,
+  PackageAdd,
   ProfileDetail,
   PackageDetail,
 } from "../views";
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
       {
         path: "packages",
         element: <PackageList />,
+      },
+      {
+        path: "packages/add",
+        element: <PackageAdd />,
       },
       {
         path: "packages/detail/:packageId",

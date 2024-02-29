@@ -40,6 +40,31 @@
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
+.button {
+  display: inline-block;
+  padding: 5px 20px;
+  background-color:#7367f0 ; /* Green */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px bold;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 300px;
+  height:35px;
+  font-family: "Hind", sans-serif;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s;
+}
+
+.button:hover {
+box-shadow: palevioletred;
+color: white;
+transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s;
+
+}
+
 
 /* Optional: Style for list items */
 .two-column-list li:nth-child(odd) {
