@@ -14,9 +14,9 @@ const PackageService = {
         });
     });
   },
-  getPackageWithFilters() {
+  getPackageWithFilters(payload) {
     return new Promise((resolve, reject) => {
-      Repository.post(`${resource}/search`)
+      Repository.post(`${resource}/search`, payload)
         .then((response) => {
           resolve(response.data.data);
         })

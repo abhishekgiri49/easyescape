@@ -1,10 +1,19 @@
 import { Outlet } from "react-router-dom";
-import { UserNavbar, Footer } from "../../components";
+import { UserNavbar, LoadingScreen } from "../../components";
 import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import NavWrapper from "../../../assets/wrappers/Navbar";
 const HomeLayout = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
   return (
     <>
+      <LoadingScreen loading={loading} setLoading={setLoading} />
       <Wrapper>
         <div className="app-content content ecommerce-application">
           <NavWrapper>

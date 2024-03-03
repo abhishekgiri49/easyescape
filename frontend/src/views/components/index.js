@@ -20,3 +20,4 @@ export { default as Page4 } from "./HomeComponent/Page4";
 export { default as Sin2 } from "./HomeComponent/Sin2";
 export { default as Footer } from "./HomeComponent/Footer";
 export { default as Alert } from "./Alert";
+export { default as LoadingScreen } from "./LoadingScreen";

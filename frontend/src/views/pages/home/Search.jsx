@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
-import { Breadcrumb, DataTable, Alert } from "../../components";
+import { Breadcrumb, DataTable, LoadingScreen } from "../../components";
 import { Link, useLocation } from "react-router-dom";
 import { PackageService } from "../../../repositories";
 import {
@@ -14,9 +14,9 @@ const Search = () => {
   const [packages, setPackages] = useState([]);
   const [formData, setFormData] = useState([]);
   const location = useLocation();
+
   useEffect(() => {
     try {
-      fetchSearchParameter();
       fetchList();
     } catch (error) {
       console.log("Error: ", error);
@@ -27,14 +27,17 @@ const Search = () => {
       setPackages(data);
     });
   };
-  const fetchSearchParameter = () => {
-    const searchParams = new URLSearchParams(location.search);
-    formData.place = searchParams.get("place");
+
+  const handleFilters = (data) => {
+    setFormData({
+      ...formData,
+      ...data,
+    });
   };
   return (
     <>
       <div className="flex flex-wrap w-full h-screen"></div>
-      <SearchBar />
+      <SearchBar onChangeSearch={handleFilters} />
       <div className="content-wrapper container-xxl p-0">
         <div className="content-detached content-right">
           <h1 className="title center">Travel Packages</h1>
@@ -72,7 +75,7 @@ const Search = () => {
             <Pagination />
           </div>
         </div>
-        <FilterSidebar />
+        <FilterSidebar onChange={handleFilters} />
       </div>
     </>
   );

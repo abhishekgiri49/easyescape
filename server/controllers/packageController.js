@@ -56,19 +56,7 @@ const getAll = async (req, res) => {
       .json({ status: 500, data: [], message: "Internal Server Error" });
   }
 };
-// Get all packages with filters
-const getAllPackagesWithFilters = async (req, res) => {
-  try {
-    const packages = await Package.find().populate(["category", "place"]);
-    // Sort by date descending
-    res.status(200).json({ status: 201, data: packages, message: "success" });
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ status: 500, data: [], message: "Internal Server Error" });
-  }
-};
+
 // Get a specific package by ID
 const getById = async (req, res) => {
   try {
@@ -162,5 +150,4 @@ module.exports = {
   getById,
   updateById,
   deleteById,
-  getAllPackagesWithFilters,
 };

@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-
 import { useNavigate, useLocation } from "react-router-dom";
-const SearchBar = () => {
+import { PlaceService } from "../../../repositories";
+const SearchBar = ({ onChangeSearch }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [places, setPlaces] = useState([]);
   const [formData, setFormData] = useState({});
   useEffect(() => {
     fetchSearchParameter();
-  }, []); // eslint-disable-line react
+    fetchFilterList();
+  }, []);
+  useEffect(() => {
+    onChangeSearch(formData);
+  }, [formData]);
   const fetchSearchParameter = () => {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.has("place")) {
@@ -33,6 +38,11 @@ const SearchBar = () => {
     }
     // formData.place = searchParams.get("place");
   };
+  const fetchFilterList = () => {
+    PlaceService.get().then((data) => {
+      setPlaces(data);
+    });
+  };
   // Handles the onChange event of each input field.
   const handleChange = (e) => {
     setFormData({
@@ -57,15 +67,20 @@ const SearchBar = () => {
         <fieldset>
           <label>DESTINATION</label>
           <div>
-            <input
-              type="text"
-              id="cities"
+            <select
+              id="adults-number"
               name="place"
               value={formData.place}
               onChange={handleChange}
-              placeholder="Paris, France"
-              required
-            />
+            >
+              <option value="">Select a destination</option>
+              {places &&
+                places.map((place, index) => (
+                  <option key={index} value={place.name}>
+                    {place.name}
+                  </option>
+                ))}
+            </select>
           </div>
           <div className="left2">
             <label>CHECK-IN DATE</label>

@@ -12,7 +12,6 @@ const {
   getById,
   updateById,
   deleteById,
-  getAllPackagesWithFilters,
 } = require("../controllers/packageController");
 
 // Create a new  (requires token validation)
@@ -46,5 +45,4 @@ router.put(
 // Delete a  by ID (requires token validation)
 router.delete("/:id", verifyToken, deleteById);
 
-router.post("/search", getAllPackagesWithFilters);
 module.exports = router;
