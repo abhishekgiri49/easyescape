@@ -182,7 +182,9 @@ span.selected {
 .searchcontainer {
   background-color: #67ddf096;
   height: 600px;
+ 
 }
+
 .plane {
   margin-top: 150px;
   margin-left: 28px;
@@ -199,6 +201,9 @@ span.selected {
   margin-top: 80px;
   position: relative;
 }
+
+
+
 
 /*  Pagina 1 */
 
@@ -1274,25 +1279,18 @@ ul.mainmenu2 li a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3rem;
+
 }
 .section-head-title {
   color: #000000;
   font-size: 3.6rem;
-  font-family: "Playfair Display", serif;
-}
-/* Features Destinations */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
+  font-family: Chalkduster,fantasy;
+  width: 100%;
+  background-color:#666699;
 }
 
-.section-head-title {
-  color: #000000;
-  font-size: 3.6rem;
-  font-family: "Playfair Display", serif;
-}
+
+
 section.features {
   padding: 20px 0px;
 }
@@ -1360,4 +1358,45 @@ section.features {
   font-family: "Inter", sans-serif;
   color: #80918e;
   font-weight: 400;
+}
+
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.nav-link {
+  color: #ffffff !important;
+}
+
+.dropdown-menu {
+  background-color: #252525;
+}
+
+.dropdown-item {
+  color: #ffffff !important;
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff;
+}
+
+.navbar-toggler {
+  border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .top-navbar {
+  background-color: #009999;
+  color: #ffffff;
+  padding: 5px 0;
+  }
 }
