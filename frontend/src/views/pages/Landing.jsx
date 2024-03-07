@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
 import {
-  Page2,
+  
   FlashDeal,
   TrendingBlogs,
   SearchBar,
-  Page4,
+  OurHighlights,
+  FeaturedDestination,
   Sin2,
   Footer,
 } from "../components";
@@ -22,10 +23,10 @@ const Landing = () => {
   return (
     <>
       <SearchBar onChangeSearch={handleFilters} />
-      <Page2 />
+      <FeaturedDestination />
       <FlashDeal />
       <TrendingBlogs />
-      <Page4 />
+      <OurHighlights />
 
       {/* <Sin2 /> */}
       <Footer />

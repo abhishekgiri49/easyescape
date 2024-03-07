@@ -5,9 +5,9 @@ const TrendingBlogs = () => {
         <div class="trendings-content">
           <div class="section-header">
             <h3 class="section-head-title">Trending stories</h3>
-            <a href="#" class="view-all">
+            {/* <a href="#" class="view-all">
               View all <span></span>
-            </a>
+            </a> */}
           </div>
           <div class="stories">
             <div class="story">

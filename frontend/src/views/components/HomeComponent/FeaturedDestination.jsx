@@ -1,6 +1,6 @@
 import React from "react";
 
-const Page2 = () => {
+const FeaturedDestination = () => {
   return (
     <section class="features">
       <div class="container">
@@ -59,4 +59,4 @@ const Page2 = () => {
     </section>
   );
 };
-export default Page2;
+export default FeaturedDestination;

@@ -1,7 +1,9 @@
 import productimage from "./../../../assets/images/eCommerce/kashmir.jpg";
+import { Link } from "react-router-dom";
 const PackageCard = ({ index, packageData }) => {
   return (
     <>
+    <Link to={`package/detail/${packageData._id}`}>
       <div className="card">
         <img
           className="card-img-top"
@@ -43,6 +45,7 @@ const PackageCard = ({ index, packageData }) => {
           <li>Night Tour</li>
         </ul>
       </div>
+      </Link>
     </>
   );
 };
