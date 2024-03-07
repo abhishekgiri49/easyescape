@@ -50,7 +50,7 @@ const NavWrapper = styled.div`
     font-size: 20px;
   }
   .nav{
-    padding-left:16px;
+    padding:16px;
   }
   span.logo-text {
     font-family: Arial, sans-serif;

@@ -60,9 +60,6 @@ const validatePlace = [
   body("name")
     .isLength({ min: 3 })
     .withMessage("Name must be at least 3 characters long"),
-    body("country")
-    .isLength({ min: 3 })
-    .withMessage("Country must be selected"),
   body("categoryId")
     .isMongoId()
     .withMessage("Invalid category ID. Please select category"),

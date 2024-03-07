@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
-import { Breadcrumb, DataTable, Alert } from "../../components";
-import { Link } from "react-router-dom";
+import { Breadcrumb, DataTable, LoadingScreen } from "../../components";
+import { Link, useLocation } from "react-router-dom";
 import { PackageService } from "../../../repositories";
 import {
   FilterSidebar,
@@ -10,10 +11,33 @@ import {
 } from "../../components";
 
 const Search = () => {
+  const [packages, setPackages] = useState([]);
+  const [formData, setFormData] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    try {
+      fetchList();
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }, [formData]);
+  const fetchList = () => {
+    PackageService.getPackageWithFilters(formData).then((data) => {
+      setPackages(data);
+    });
+  };
+
+  const handleFilters = (data) => {
+    setFormData({
+      ...formData,
+      ...data,
+    });
+  };
   return (
     <>
       <div className="flex flex-wrap w-full h-screen"></div>
-      <SearchBar />
+      <SearchBar onChangeSearch={handleFilters} />
       <div className="content-wrapper container-xxl p-0">
         <div className="content-detached content-right">
           <h1 className="title center">Travel Packages</h1>
@@ -32,7 +56,9 @@ const Search = () => {
                           <FaAlignJustify />
                         </span>
                       </button>
-                      <div className="search-results">0 results found</div>
+                      <div className="search-results">
+                        {packages.length} results found
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -42,16 +68,14 @@ const Search = () => {
             <div className="body-content-overlay"></div>
 
             <section id="ecommerce-products" className="grid-view">
-              <PackageCard />
-              <PackageCard />
-              <PackageCard />
-              <PackageCard />
-              <PackageCard />
+              {packages.map((packageData, index) => (
+                <PackageCard key={index} packageData={packageData} />
+              ))}
             </section>
             <Pagination />
           </div>
         </div>
-        <FilterSidebar />
+        <FilterSidebar onChange={handleFilters} />
       </div>
     </>
   );
