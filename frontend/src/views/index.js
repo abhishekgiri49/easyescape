@@ -33,3 +33,6 @@ export { default as Error } from "./pages/utils/Error";
 export { default as Stats } from "./pages/utils/Stats";
 export { default as Landing } from "./pages/Landing";
 export { default as HomePackageDetail } from "./pages/Package/PackageDetail";
+export { default as BookTrip } from "./pages/Package/BookTrip";
+export { default as Paynow } from "./pages/Package/payment/stripe/Paynow";
+export { default as Success } from "./pages/Package/payment/stripe/Success";
