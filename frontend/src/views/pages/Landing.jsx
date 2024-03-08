@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
 import {
-  
   FlashDeal,
   TrendingBlogs,
   SearchBar,
@@ -29,7 +28,6 @@ const Landing = () => {
       <OurHighlights />
 
       {/* <Sin2 /> */}
-      <Footer />
     </>
   );
 };

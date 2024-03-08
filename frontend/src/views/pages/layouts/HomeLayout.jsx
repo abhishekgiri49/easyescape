@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { UserNavbar, LoadingScreen } from "../../components";
+import { UserNavbar, LoadingScreen, Footer } from "../../components";
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import NavWrapper from "../../../assets/wrappers/Navbar";
@@ -25,14 +25,7 @@ const HomeLayout = () => {
           </NavWrapper>
         </div>
       </Wrapper>
-      <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0 text-start">
-          <span class="d-block d-md-inline-block ">
-            COPYRIGHT &copy; 2021 EASYESCAPE
-            <span class="d-none d-sm-inline-block">, All rights Reserved</span>
-          </span>
-        </p>
-      </footer>
+      <Footer />
     </>
   );
 };

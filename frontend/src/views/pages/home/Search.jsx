@@ -36,7 +36,6 @@ const Search = () => {
   };
   return (
     <>
-      <div className="flex flex-wrap w-full h-screen"></div>
       <SearchBar onChangeSearch={handleFilters} />
       <div className="content-wrapper container-xxl p-0">
         <div className="content-detached content-right">

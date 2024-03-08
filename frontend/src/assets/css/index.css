@@ -158,10 +158,8 @@ span.selected {
   background-repeat: no-repeat;
   background-image: url(../images/travel1.jpg);
   height: 600px;
-background-size: cover;
+  background-size: cover;
   background-position: center;
-
- 
 }
 
 .plane {
@@ -180,11 +178,7 @@ background-size: cover;
   margin-top: 80px;
   position: relative;
   background: rgba(18, 68, 21, 0.229);
-  
 }
-
-
-
 
 /*  Pagina 1 */
 
@@ -209,11 +203,11 @@ fieldset {
   width: 84%;
   margin: 30px auto;
   margin-right: 30px;
-  
+
   padding: 2em;
   border: none;
 }
-.right fieldset label{
+.right fieldset label {
   color: white;
 }
 .reservation {
@@ -243,7 +237,7 @@ fieldset {
   padding: 0.5em;
   font-family: "Raleway", sans-serif;
   color: #fff;
-  width: 90%;
+  width: 95.5%;
 }
 
 .left2 {
@@ -1262,19 +1256,16 @@ ul.mainmenu2 li a {
   align-items: center;
   margin-bottom: 3rem;
   width: 100%;
-
 }
 .section-head-title {
   color: #fae037;
   font-size: 3.2rem;
-  font-family: Chalkduster,fantasy;
+  font-family: Chalkduster, fantasy;
   width: 100%;
-  background-color:#387c7c;
+  background-color: #387c7c;
   max-height: 12rem;
-  padding:0.3rem;
+  padding: 0.3rem;
 }
-
-
 
 section.features {
   padding: 20px 0px;
@@ -1326,13 +1317,13 @@ section.features {
   left: 0;
   background-color: #ffffff;
   border-top-right-radius: 0.6rem;
-  padding:.5rem 1rem 0 0;
+  padding: 0.5rem 1rem 0 0;
 }
 
 .location {
   display: block;
   font-size: 1.5rem;
-  font-family: "Lucida Console", "Courier New", monospace;;
+  font-family: "Lucida Console", "Courier New", monospace;
   font-weight: bold;
   color: #042521;
 }
@@ -1344,7 +1335,6 @@ section.features {
   color: #80918e;
   font-weight: 400;
 }
-
 
 .logo-link {
   display: flex;
@@ -1380,10 +1370,11 @@ section.features {
 
 @media (max-width: 768px) {
   .top-navbar {
-  background-color: #009999;
-  color: #ffffff;
-  padding: 5px 0;
-  }}
+    background-color: #009999;
+    color: #ffffff;
+    padding: 5px 0;
+  }
+}
 .loading-screen {
   position: fixed;
   top: 0;
@@ -1405,7 +1396,7 @@ section.features {
   height: 100px;
   animation: spin 1.5s linear infinite;
 }
-  
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1413,4 +1404,49 @@ section.features {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* plus and minus of number of people */
+
+.quantity {
+  display: flex;
+  margin: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quantity button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 70px;
+  height: auto;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.quantity button:hover {
+  background-color: #2980b9;
+}
+
+.input-box {
+  width: 100px;
+  text-align: center;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Hide the number input spin buttons */
+.input-box::-webkit-inner-spin-button,
+.input-box::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-box[type="number"] {
+  -moz-appearance: textfield;
 }
