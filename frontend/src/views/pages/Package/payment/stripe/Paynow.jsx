@@ -1,31 +1,45 @@
 import { Elements, useStripe, useElements } from "@stripe/react-stripe-js";
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { STRIPE_PUBLISHABLE_KEY } from "./../../../../../helper/Constant";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
 import { TripService } from "../../../../../repositories";
-const stripePromise = loadStripe(
-  "pk_test_51Oqm4TIkXtr50PnO7IIm7uVL9rCgHKJzAUfHA1Sm3KMD60CzuWo9BAK6rVsMiqShSL0eYpeU9n3jUEfrCr1669du00RdvrLtyK"
-);
+const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 const Paynow = () => {
   const [clientSecret, setClientSecret] = useState("");
-  const [formData, setFormData] = useState({
-    amount: 10000,
-  });
+  const [order, setOrder] = useState({});
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get("orderId");
+    if (orderId) {
+      TripService.find(orderId)
+        .then((data) => {
+          setOrder(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching package details:", error);
+        });
+    }
+  }, []);
   useEffect(() => {
     fetchClientSecret();
-  }, []);
+  }, [order]);
+
   const fetchClientSecret = async () => {
-    TripService.createCheckoutSession(formData)
-      .then((data) => {
-        setClientSecret(data.clientSecret);
-      })
-      .catch((error) => {
-        console.error("Error fetching package details:", error);
-      });
+    // console.log(order);
+    if (Object.keys(order).length > 0) {
+      TripService.createCheckoutSession(order)
+        .then((data) => {
+          setClientSecret(data.clientSecret);
+        })
+        .catch((error) => {
+          console.error("Error fetching package details:", error);
+        });
+    }
   };
   return (
     <>

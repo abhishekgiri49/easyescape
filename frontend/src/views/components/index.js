@@ -7,7 +7,6 @@ export { default as FilterSidebar } from "./Sidebar/FilterSidebar";
 export { default as Breadcrumb } from "./Breadcrumb";
 export { default as DataTable } from "./DataTable";
 export { default as Carousel } from "./Carousel";
-export { default as PackageCard } from "./../pages/Package/PackageCard";
 
 export { default as Pagination } from "./Pagination";
 export { default as CKEditorComponent } from "./CKEditorComponent";

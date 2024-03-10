@@ -2,55 +2,55 @@ import React from "react";
 
 const FeaturedDestination = () => {
   return (
-    <section class="features">
-      <div class="container">
-        <div class="features-content">
-          <div class="section-header">
-            <h3 class="section-head-title">Featured destinations</h3>
+    <section className="features">
+      <div className="container">
+        <div className="features-content">
+          <div className="section-header">
+            <h3 className="section-head-title">Featured destinations</h3>
           </div>
-          <div class="features-cards">
-            <div class="feature-card">
+          <div className="features-cards">
+            <div className="feature-card">
               <img
                 src="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/features/raja-ampat.jpg"
                 alt=""
-                class="feature-img"
+                className="feature-img"
               />
-              <div class="feature-card-desc">
-                <span class="location">Raja Ampat</span>
-                <span class="country">Indonesia</span>
+              <div className="feature-card-desc">
+                <span className="location">Raja Ampat</span>
+                <span className="country">Indonesia</span>
               </div>
             </div>
-            <div class="feature-card">
+            <div className="feature-card">
               <img
                 src="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/features/fanjingshan.jpg"
                 alt=""
-                class="feature-img"
+                className="feature-img"
               />
-              <div class="feature-card-desc">
-                <span class="location">Fanjingshan</span>
-                <span class="country">China</span>
+              <div className="feature-card-desc">
+                <span className="location">Fanjingshan</span>
+                <span className="country">China</span>
               </div>
             </div>
-            <div class="feature-card">
+            <div className="feature-card">
               <img
                 src="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/features/vevey.jpg"
                 alt=""
-                class="feature-img"
+                className="feature-img"
               />
-              <div class="feature-card-desc">
-                <span class="location">Vevey</span>
-                <span class="country">Switzerland</span>
+              <div className="feature-card-desc">
+                <span className="location">Vevey</span>
+                <span className="country">Switzerland</span>
               </div>
             </div>
-            <div class="feature-card">
+            <div className="feature-card">
               <img
                 src="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/features/skadar.jpg"
                 alt=""
-                class="feature-img"
+                className="feature-img"
               />
-              <div class="feature-card-desc">
-                <span class="location">Skadar</span>
-                <span class="country">Montenegro</span>
+              <div className="feature-card-desc">
+                <span className="location">Skadar</span>
+                <span className="country">Montenegro</span>
               </div>
             </div>
           </div>

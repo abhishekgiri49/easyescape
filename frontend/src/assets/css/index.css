@@ -116,6 +116,7 @@ span.selected {
 }
 
 .fw-bolder {
+  color: #6e6b7b !important;
   font-weight: 800 !important;
 }
 .fs-4 {
@@ -515,7 +516,9 @@ th {
   text-align: left;
   line-height: 1.6;
 }
-
+.user-status {
+  color: #6e6b7b !important;
+}
 .bottone3 {
   background-color: transparent;
   font-family: "Hind", sans-serif;

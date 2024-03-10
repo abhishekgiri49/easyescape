@@ -3,13 +3,8 @@ import { FaAlignJustify } from "react-icons/fa";
 import { Breadcrumb, DataTable, LoadingScreen } from "../../components";
 import { Link, useLocation } from "react-router-dom";
 import { PackageService } from "../../../repositories";
-import {
-  FilterSidebar,
-  PackageCard,
-  Pagination,
-  SearchBar,
-} from "../../components";
-
+import { FilterSidebar, Pagination, SearchBar } from "../../components";
+import { PackageCard } from "../../../views";
 const Search = () => {
   const [packages, setPackages] = useState([]);
   const [formData, setFormData] = useState([]);

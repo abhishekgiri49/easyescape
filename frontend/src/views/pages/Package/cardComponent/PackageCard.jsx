@@ -1,4 +1,3 @@
-import productimage from "./../../../assets/images/eCommerce/kashmir.jpg";
 import { Link } from "react-router-dom";
 const PackageCard = ({ index, packageData }) => {
   return (

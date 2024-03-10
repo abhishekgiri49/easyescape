@@ -32,10 +32,10 @@ const Success = () => {
                 <p>
                   We are delighted to inform you that we received your payments
                 </p>
-                <a href="#" class="btn-view-orders">
+                <Link to={"/"} class="btn-view-orders">
                   View Your Trips
-                </a>
-                <a href="#">Continue Shopping</a>
+                </Link>
+                <Link to={"/"}>Continue Shopping</Link>
               </div>
             </Wrapper>
           </div>
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   .success-page {
     max-width: 300px;
     display: block;
-    margin: 0 auto;
+    margin: 70px auto;
     text-align: center;
     position: relative;
     top: 50%;

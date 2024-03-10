@@ -22,8 +22,8 @@ import {
   ProfileDetail,
   PackageDetail,
   HomePackageDetail,
-  BookTrip,
   Success,
+  TripList,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -80,10 +80,6 @@ export const router = createBrowserRouter([
         element: <HomePackageDetail />,
       },
       {
-        path: "book-trip",
-        element: <BookTrip />,
-      },
-      {
         path: "return",
         element: <Success />,
       },
@@ -130,6 +126,10 @@ export const router = createBrowserRouter([
       {
         path: "packages/detail/:packageId",
         element: <PackageDetail />,
+      },
+      {
+        path: "trips",
+        element: <TripList />,
       },
     ],
   },
