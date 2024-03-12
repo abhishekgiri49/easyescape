@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { FaArrowRight, FaPlane, FaCar, FaTrain, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import "../../../../assets/css/index.css";
+import FlightImage from "../../../../assets/images/flight_footer2.png"; // Import your flight photo
 const PackageInfoCard = ({ index, packageData }) => {
   return (
     <>
@@ -13,265 +16,248 @@ const PackageInfoCard = ({ index, packageData }) => {
                   </div>
                   <div className="card-body">
                     <ul className="timeline">
-                      <li className="timeline-item">
-                        <span className="timeline-point timeline-point-indicator"></span>
-                        <div className="timeline-event">
-                          <div className="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                            <h6>Day 1</h6>
-                            <span className="timeline-event-time">
-                              12 min ago
-                            </span>
-                          </div>
-                          <p>Invoices have been paid to the company.</p>
-                          <div className="d-flex flex-row align-items-center">
-                            <img
-                              className="me-1"
-                              src="../../../app-assets/images/icons/file-icons/pdf.png"
-                              alt="invoice"
-                              height="23"
-                            />
-                            <span>invoice.pdf</span>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="timeline-item">
-                        <span className="timeline-point timeline-point-secondary timeline-point-indicator"></span>
-                        <div className="timeline-event">
-                          <div className="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                            <h6>Day 2</h6>
-                            <span className="timeline-event-time">
-                              45 min ago
-                            </span>
-                          </div>
-                          <p>Project meeting with john @10:15am.</p>
-                          <div className="d-flex flex-row align-items-center">
-                            <div className="avatar">
-                              <img
-                                src="../../../app-assets/images/avatars/12-small.png"
-                                alt="avatar"
-                                height="38"
-                                width="38"
-                              />
-                            </div>
-                            <div className="ms-50">
-                              <h6 className="mb-0">John Doe (Client)</h6>
-                              <span>CEO of Infibeam</span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="timeline-item">
-                        <span className="timeline-point timeline-point-success timeline-point-indicator"></span>
-                        <div className="timeline-event">
-                          <div className="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                            <h6>Day 3</h6>
-                            <span className="timeline-event-time">
-                              2 hours ago
-                            </span>
-                          </div>
-                          <p className="mb-50">
-                            Click the button below to read financial reports
-                          </p>
+                    <li className="timeline-item">
+                        <span className="timeline-point timeline-point-danger timeline-point-indicator"></span>
+                        <div class="col-md-4 col-md-8 col-lg-12 col-md-6">
 
-                          <div className="collapse" id="collapseExample">
-                            <ul className="list-group list-group-flush mt-1">
-                              <li className="list-group-item d-flex justify-content-between flex-wrap">
-                                <span>
-                                  Last Year's Profit :{" "}
-                                  <span className="fw-bold">$20000</span>
-                                </span>
-                                <i
-                                  data-feather="share-2"
-                                  className="cursor-pointer font-medium-2"
-                                ></i>
-                              </li>
-                              <li className="list-group-item d-flex justify-content-between flex-wrap">
-                                <span>
-                                  {" "}
-                                  This Year's Profit :{" "}
-                                  <span className="fw-bold">$25000</span>
-                                </span>
-                                <i
-                                  data-feather="share-2"
-                                  className="cursor-pointer font-medium-2"
-                                ></i>
-                              </li>
-                              <li className="list-group-item d-flex justify-content-between flex-wrap">
-                                <span>
-                                  {" "}
-                                  Last Year's Commission :{" "}
-                                  <span className="fw-bold">$5000</span>
-                                </span>
-                                <i
-                                  data-feather="share-2"
-                                  className="cursor-pointer font-medium-2"
-                                ></i>
-                              </li>
-                              <li className="list-group-item d-flex justify-content-between flex-wrap">
-                                <span>
-                                  {" "}
-                                  This Year's Commission :{" "}
-                                  <span className="fw-bold">$7000</span>
-                                </span>
-                                <i
-                                  data-feather="share-2"
-                                  className="cursor-pointer font-medium-2"
-                                ></i>
-                              </li>
-                              <li className="list-group-item d-flex justify-content-between flex-wrap">
-                                <span>
-                                  {" "}
-                                  This Year's Total Balance :{" "}
-                                  <span className="fw-bold">$70000</span>
-                                </span>
-                                <i
-                                  data-feather="share-2"
-                                  className="cursor-pointer font-medium-2"
-                                ></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="timeline-item">
-                        <span className="timeline-point timeline-point-warning timeline-point-indicator"></span>
-                        <div className="timeline-event">
-                          <div className="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                            <h6 className="mb-50">Day 4</h6>
-                            <span className="timeline-event-time">
-                              03:00 PM
-                            </span>
-                          </div>
-                          <p>
-                            Have to interview Katy Turner for the developer job.
-                          </p>
 
-                          <div className="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                            <div className="d-flex flex-row align-items-center">
-                              <div className="avatar me-1">
-                                <img
-                                  src="../../../app-assets/images/avatars/1-small.png"
-                                  alt="Avatar"
-                                  height="32"
-                                  width="32"
-                                />
+                          <div class="card card-developer-meetup">
+
+
+                            <div class="card-body">
+
+                              <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day col-md-0 col-md-2">
+                                  <h6 class="mb-0">DAY</h6>
+                                  <h3 class="mb-0">1</h3>
+                                </div>
+                                <div class="my-auto">
+
+                                  <p class="card-text mb-0">Arrival in Goa - Dabolim Airport</p>
+                                </div>
+                                <div class="d-flex flex-row meetings col-md-5 col-md-6 px-3">
+                                  <div class="avatar bg-light-primary rounded me-1">
+                                    <div class="avatar-content">
+                                      <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                  </div>
+                                  <div class="content-body">
+                                    <h6 class="mb-0">Sat, May 25, 2020</h6>
+                                    <small>10:AM to 6:PM</small>
+                                  </div>
+                                  <span className="timeline-event-time d-flex px-5">
+
+                                    <FaCar
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaArrowRight
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaPlane
+                                      className="fa-icon-styling"
+                                    />
+                                  </span>
+
+                                </div>
                               </div>
-                              <span>
-                                <p className="mb-0">Katy Turner</p>
-                                <span className="text-muted">
-                                  Javascript Developer
-                                </span>
-                              </span>
-                            </div>
-                            <div className="d-flex align-items-center cursor-pointer mt-sm-0 mt-50">
-                              <i
-                                data-feather="message-square"
-                                className="me-1"
-                              ></i>
-                              <i data-feather="phone-call"></i>
+
                             </div>
                           </div>
                         </div>
                       </li>
                       <li className="timeline-item">
                         <span className="timeline-point timeline-point-danger timeline-point-indicator"></span>
-                        <div className="timeline-event">
-                          <div className="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                            <h6>Day 5</h6>
-                            <span className="timeline-event-time">03:00PM</span>
-                          </div>
-                          <p>
-                            Develop an online store of electronic devices for
-                            the provided layout, as well as develop a mobile
-                            version of it. The must be compatible with any CMS.
-                          </p>
-                          <div className="d-flex justify-content-between flex-wrap flex-sm-row flex-column">
-                            <div>
-                              <p className="text-muted mb-50">Developers</p>
-                              <div className="d-flex align-items-center">
-                                <div className="avatar bg-light-primary avatar-sm me-50">
-                                  <span className="avatar-content">A</span>
+                        <div class="col-md-4 col-md-8 col-lg-12 col-md-6">
+
+
+                          <div class="card card-developer-meetup">
+
+
+                            <div class="card-body">
+
+                              <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day col-md-0 col-md-2">
+                                  <h6 class="mb-0">DAY</h6>
+                                  <h3 class="mb-0">2</h3>
                                 </div>
-                                <div className="avatar bg-light-success avatar-sm me-50">
-                                  <span className="avatar-content">B</span>
+                                <div class="my-auto">
+
+                                  <p class="card-text mb-0">Agonda Beach</p>
                                 </div>
-                                <div className="avatar bg-light-danger avatar-sm">
-                                  <span className="avatar-content">C</span>
+                                <div class="d-flex flex-row meetings col-md-5 col-md-6 px-3">
+                                  <div class="avatar bg-light-primary rounded me-1">
+                                    <div class="avatar-content">
+                                      <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                  </div>
+                                  <div class="content-body">
+                                    <h6 class="mb-0">Sat, May 25, 2020</h6>
+                                    <small>10:AM to 6:PM</small>
+                                  </div>
+                                  <span className="timeline-event-time d-flex px-5">
+
+                                    <FaCar
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaArrowRight
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaPlane
+                                      className="fa-icon-styling"
+                                    />
+                                  </span>
+
                                 </div>
                               </div>
-                            </div>
-                            <div className="mt-sm-0 mt-1">
-                              <p className="text-muted mb-50">Deadline</p>
-                              <p className="mb-0">20 Dec 2077</p>
-                            </div>
-                            <div className="mt-sm-0 mt-1">
-                              <p className="text-muted mb-50">Budget</p>
-                              <p className="mb-0">$50000</p>
+
                             </div>
                           </div>
                         </div>
                       </li>
                       <li className="timeline-item">
-                        <span className="timeline-point timeline-point-info timeline-point-indicator"></span>
-                        <div className="timeline-event">
-                          <div className="d-flex justify-content-between align-items-center mb-50">
-                            <h6>Designing UI</h6>
-                            <div>
-                              <span className="badge rounded-pill badge-light-primary">
-                                Design
-                              </span>
+                        <span className="timeline-point timeline-point-danger timeline-point-indicator"></span>
+                        <div class="col-md-4 col-md-8 col-lg-12 col-md-6">
+
+
+                          <div class="card card-developer-meetup">
+
+
+                            <div class="card-body">
+
+                              <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day col-md-0 col-md-2">
+                                  <h6 class="mb-0">DAY</h6>
+                                  <h3 class="mb-0">3</h3>
+                                </div>
+                                <div class="my-auto align-items-center
+                                ">
+
+                                  <p class="card-text mb-0">Dudhsagar Falls</p>
+                                </div>
+                                <div class="d-flex flex-row meetings col-md-5 col-md-6 px-3">
+                                  <div class="avatar bg-light-primary rounded me-1">
+                                    <div class="avatar-content">
+                                      <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                  </div>
+                                  <div class="content-body">
+                                    <h6 class="mb-0">Sat, May 25, 2020</h6>
+                                    <small>10:AM to 6:PM</small>
+                                  </div>
+                                  <span className="timeline-event-time d-flex px-5">
+
+                                    <FaCar
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaArrowRight
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaPlane
+                                      className="fa-icon-styling"
+                                    />
+                                  </span>
+
+                                </div>
+                              </div>
+
                             </div>
                           </div>
-                          <p>
-                            Our main goal is to design a new mobile application
-                            for our client. The customer wants a clean & flat
-                            design.
-                          </p>
-                          <div>
-                            <span className="text-muted">Participants</span>
-                            <div className="avatar-group mt-50">
-                              <div
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="bottom"
-                                title="Vinnie Mostowy"
-                                className="avatar pull-up"
-                              >
-                                <img
-                                  src="../../../app-assets/images/portrait/small/avatar-s-5.jpg"
-                                  alt="Avatar"
-                                  height="30"
-                                  width="30"
-                                />
+                        </div>
+                      </li>
+                      <li className="timeline-item">
+                        <span className="timeline-point timeline-point-danger timeline-point-indicator"></span>
+                        <div class="col-md-4 col-md-8 col-lg-12 col-md-6">
+
+
+                          <div class="card card-developer-meetup">
+
+
+                            <div class="card-body">
+
+                              <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day col-md-0 col-md-2">
+                                  <h6 class="mb-0">DAY</h6>
+                                  <h3 class="mb-0">4</h3>
+                                </div>
+                                <div class="my-auto">
+
+                                  <p class="card-text mb-0">Cavelossim Beach</p>
+                                </div>
+                                <div class="d-flex flex-row meetings col-md-5 col-md-6 px-3">
+                                  <div class="avatar bg-light-primary rounded me-1">
+                                    <div class="avatar-content">
+                                      <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                  </div>
+                                  <div class="content-body">
+                                    <h6 class="mb-0">Sat, May 25, 2020</h6>
+                                    <small>10:AM to 6:PM</small>
+                                  </div>
+                                  <span className="timeline-event-time d-flex px-5">
+
+                                    <FaCar
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaArrowRight
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaPlane
+                                      className="fa-icon-styling"
+                                    />
+                                  </span>
+
+                                </div>
                               </div>
-                              <div
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="bottom"
-                                title="Elicia Rieske"
-                                className="avatar pull-up"
-                              >
-                                <img
-                                  src="../../../app-assets/images/portrait/small/avatar-s-7.jpg"
-                                  alt="Avatar"
-                                  height="30"
-                                  width="30"
-                                />
+
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="timeline-item">
+                        <span className="timeline-point timeline-point-danger timeline-point-indicator"></span>
+                        <div class="col-md-4 col-md-8 col-lg-12 col-md-6">
+
+
+                          <div class="card card-developer-meetup">
+
+
+                            <div class="card-body">
+
+                              <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day col-md-0 col-md-2">
+                                  <h6 class="mb-0">DAY</h6>
+                                  <h3 class="mb-0">5</h3>
+                                </div>
+                                <div class="my-auto">
+
+                                  <p class="card-text mb-0">Arriving at Indira Gandhi International airport</p>
+                                </div>
+                                <div class="d-flex flex-row meetings col-md-5 col-md-6 px-3">
+                                  <div class="avatar bg-light-primary rounded me-1">
+                                    <div class="avatar-content">
+                                      <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                  </div>
+                                  <div class="content-body">
+                                    <h6 class="mb-0">Sat, May 25, 2020</h6>
+                                    <small>10:AM to 6:PM</small>
+                                  </div>
+                                  <span className="timeline-event-time d-flex px-5">
+
+                                    <FaCar
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaArrowRight
+                                      className="fa-icon-styling"
+                                    />
+                                    <FaPlane
+                                      className="fa-icon-styling"
+                                    />
+                                  </span>
+
+                                </div>
                               </div>
-                              <div
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="bottom"
-                                title="Julee Rossignol"
-                                className="avatar pull-up"
-                              >
-                                <img
-                                  src="../../../app-assets/images/portrait/small/avatar-s-10.jpg"
-                                  alt="Avatar"
-                                  height="30"
-                                  width="30"
-                                />
-                              </div>
+
                             </div>
                           </div>
                         </div>

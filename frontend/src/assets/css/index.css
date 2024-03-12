@@ -3,9 +3,11 @@
   color: #3f51b5;
   padding-top: 45px;
 }
+
 .center {
   text-align: center;
 }
+
 .includeWrapper {
   background: #f9f9f9;
   border: 1px solid #e5e5e5;
@@ -14,27 +16,33 @@
   display: flex;
   flex-direction: column;
 }
+
 .includeItemCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .includeItemCard .rightSec {
   flex: 1;
   text-align: center;
   color: #757575;
 }
+
 .price {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.price > .discount-info {
+
+.price>.discount-info {
   color: #4fc3f7;
 }
-.price > .original-price {
+
+.price>.original-price {
   font-size: 2em;
 }
+
 .two-column-list {
   display: flex;
   flex-wrap: wrap;
@@ -45,6 +53,7 @@
 .two-column-list li:nth-child(odd) {
   padding-right: 15px;
 }
+
 .two-column-list li {
   width: 50%;
   color: #000;
@@ -53,14 +62,17 @@
   position: relative;
   padding-left: 15px;
 }
+
 .single-line-list {
-  white-space: nowrap; /* Prevent line breaks */
+  white-space: nowrap;
+  /* Prevent line breaks */
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid #d8d8d8;
   margin-bottom: 12px;
   padding-bottom: 12px;
 }
+
 .card-title span.selected {
   border: 1px solid #16477f;
   border-radius: 4px;
@@ -69,6 +81,7 @@
   font-size: 12px;
   font-weight: 700;
 }
+
 span.selected {
   border: 1px solid #16477f;
   border-radius: 4px;
@@ -77,13 +90,17 @@ span.selected {
   font-size: 12px;
   font-weight: 700;
 }
+
 .card-text span {
   color: #16477f;
 }
+
 /* Optional: Style for list items */
 .single-line-list span {
-  margin-right: 1rem; /* Add space between items */
+  margin-right: 1rem;
+  /* Add space between items */
 }
+
 .text-900 {
   color: #4c5a66 !important;
 }
@@ -91,6 +108,7 @@ span.selected {
 .text-decoration-line-through {
   text-decoration: line-through !important;
 }
+
 .text-1000 {
   color: #39434d !important;
 }
@@ -98,9 +116,11 @@ span.selected {
 .fw-bold {
   font-weight: 700 !important;
 }
+
 .mb-4 {
   margin-bottom: 1.8rem !important;
 }
+
 .text-900 {
   color: #4c5a66 !important;
 }
@@ -108,9 +128,11 @@ span.selected {
 .text-decoration-line-through {
   text-decoration: line-through !important;
 }
+
 .mb-0 {
   margin-bottom: 0 !important;
 }
+
 .text-primary {
   color: #3011bc !important;
 }
@@ -119,12 +141,15 @@ span.selected {
   color: #6e6b7b !important;
   font-weight: 800 !important;
 }
+
 .fs-4 {
   font-size: 2.0736rem !important;
 }
+
 .mb-3 {
   margin-bottom: 1rem !important;
 }
+
 .text-900 {
   color: #4c5a66 !important;
 }
@@ -132,9 +157,11 @@ span.selected {
 .fw-normal {
   font-weight: 400 !important;
 }
+
 .fs--1 {
   font-size: 0.83333rem !important;
 }
+
 .text-900 {
   color: #4c5a66 !important;
 }
@@ -142,9 +169,11 @@ span.selected {
 .fw-normal {
   font-weight: 400 !important;
 }
+
 .fs--1 {
   font-size: 0.83333rem !important;
 }
+
 .ps-0 {
   padding-left: 3% !important;
 }
@@ -155,12 +184,19 @@ span.selected {
   flex: 1 1 auto;
   padding: 1rem 1rem;
 }
+
 .searchcontainer {
   background-repeat: no-repeat;
   background-image: url(../images/travel1.jpg);
   height: 600px;
   background-size: cover;
   background-position: center;
+}
+
+.fa-icon-styling {
+  height: "5rem";
+  width: "5rem";
+  padding-left: "5rem";
 }
 
 .plane {
@@ -189,16 +225,18 @@ span.selected {
 
 /*Left*/
 
-.right > h1,
+.right>h1,
 h4 {
   color: #fff;
 }
+
 .card-img,
 .card-img-top,
 .card-img-bottom {
   width: 100%;
   height: 500px;
 }
+
 /* FORM */
 fieldset {
   width: 84%;
@@ -208,9 +246,11 @@ fieldset {
   padding: 2em;
   border: none;
 }
+
 .right fieldset label {
   color: white;
 }
+
 .reservation {
   text-transform: uppercase;
   font-family: "Hind", sans-serif;
@@ -390,7 +430,7 @@ fieldset {
   transition: left 0s 0.75s;
 }
 
-[id^="slide"]:checked + .slide {
+[id^="slide"]:checked+.slide {
   left: 0;
   z-index: 100;
   transition: left 0.65s ease-out;
@@ -441,6 +481,7 @@ fieldset {
 .slide-2 {
   background-image: url("https://www.colorbook.io/imagecreator.php?hex=ff5151&width=1920&height=1080");
 }
+
 .slide-3 {
   background-image: url("https://www.colorbook.io/imagecreator.php?hex=0EDBD9&width=1920&height=1080");
 }
@@ -491,6 +532,7 @@ td {
 th:last-child {
   border-right: 0;
 }
+
 .home-table,
 td:last-child {
   border-right: 0;
@@ -516,9 +558,11 @@ th {
   text-align: left;
   line-height: 1.6;
 }
+
 .user-status {
   color: #6e6b7b !important;
 }
+
 .bottone3 {
   background-color: transparent;
   font-family: "Hind", sans-serif;
@@ -596,7 +640,7 @@ ul.mainmenu2 li a {
   overflow: hidden;
 }
 
-#collegamenti > li a {
+#collegamenti>li a {
   color: #e5e5e5;
   font-size: 13px;
   text-align: center;
@@ -606,7 +650,7 @@ ul.mainmenu2 li a {
   font-family: "Hind", sans-serif;
 }
 
-#collegamenti > li a:hover {
+#collegamenti>li a:hover {
   color: #f8a426;
 }
 
@@ -671,25 +715,27 @@ ul.mainmenu2 li a {
     margin-top: 120px;
   }
 
-  .right > h1,
+  .right>h1,
   h4 {
     color: #fff;
   }
 
-  .right > .book {
+  .right>.book {
     font-size: 50px;
     font-weight: bold;
     margin-top: -10px;
     margin-bottom: -75px;
     font-family: "Secular One", sans-serif;
   }
-  .right > .travel {
+
+  .right>.travel {
     margin-top: 50px;
     font-size: 50px;
     font-weight: bold;
     font-family: "Secular One", sans-serif;
   }
-  .right > h4 {
+
+  .right>h4 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
     margin-top: -40px;
@@ -855,6 +901,7 @@ ul.mainmenu2 li a {
   th:last-child {
     border-right: 0;
   }
+
   table,
   td:last-child {
     border-right: 0;
@@ -966,25 +1013,27 @@ ul.mainmenu2 li a {
     margin-top: 120px;
   }
 
-  .right > h1,
+  .right>h1,
   h4 {
     color: #fff;
   }
 
-  .right > .book {
+  .right>.book {
     font-size: 50px;
     font-weight: bold;
     margin-top: -10px;
     margin-bottom: -75px;
     font-family: "Secular One", sans-serif;
   }
-  .right > .travel {
+
+  .right>.travel {
     margin-top: 50px;
     font-size: 50px;
     font-weight: bold;
     font-family: "Secular One", sans-serif;
   }
-  .right > h4 {
+
+  .right>h4 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
     margin-top: -40px;
@@ -1145,6 +1194,7 @@ ul.mainmenu2 li a {
   th:last-child {
     border-right: 0;
   }
+
   table,
   td:last-child {
     border-right: 0;
@@ -1203,6 +1253,7 @@ ul.mainmenu2 li a {
     margin-top: -5px;
   }
 }
+
 /* Trending Stories */
 .stories {
   display: flex;
@@ -1245,6 +1296,7 @@ ul.mainmenu2 li a {
 .read-more {
   font-size: 1.5rem;
 }
+
 .view-all,
 .read-more {
   color: #fb8f1d;
@@ -1253,6 +1305,7 @@ ul.mainmenu2 li a {
   font-weight: bold;
   transition: 0.2s;
 }
+
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -1260,6 +1313,7 @@ ul.mainmenu2 li a {
   margin-bottom: 3rem;
   width: 100%;
 }
+
 .section-head-title {
   color: #fae037;
   font-size: 3.2rem;
@@ -1273,6 +1327,7 @@ ul.mainmenu2 li a {
 section.features {
   padding: 20px 0px;
 }
+
 .view-all,
 .read-more {
   color: #fb8f1d;
@@ -1285,9 +1340,11 @@ section.features {
 .view-all {
   width: 10rem;
 }
+
 .view-all span {
   transition: all 0.3s ease-in-out;
 }
+
 .view-all:hover span {
   width: 2rem;
   padding-left: 0.5rem;
@@ -1310,6 +1367,7 @@ section.features {
   cursor: pointer;
   position: relative;
 }
+
 .feature-card img {
   border-radius: 1rem;
 }
@@ -1378,6 +1436,7 @@ section.features {
     padding: 5px 0;
   }
 }
+
 .loading-screen {
   position: fixed;
   top: 0;
@@ -1404,6 +1463,7 @@ section.features {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
