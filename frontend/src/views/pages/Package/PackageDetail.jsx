@@ -123,7 +123,7 @@ const PackageDetail = () => {
 
                   <div className="col-lg-4 col-12 order-3">
                     <div class="amount-payable checkout-options">
-                      {userAuthenticated && !processOrder && (
+                      {!processOrder && (
                         <PriceCard
                           packageInfo={packageDetail}
                           onChange={handleFilters}
