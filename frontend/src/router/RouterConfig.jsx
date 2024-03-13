@@ -24,6 +24,7 @@ import {
   HomePackageDetail,
   Success,
   TripList,
+  Category,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         path: "return",
         element: <Success />,
+      },
+      {
+        path: "idea/category",
+        element: <Category />,
       },
     ],
   },
