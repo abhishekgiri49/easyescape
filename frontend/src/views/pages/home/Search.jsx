@@ -66,7 +66,7 @@ const Search = () => {
                 <PackageCard key={index} packageData={packageData} />
               ))}
             </section>
-            <Pagination />
+            {/* <Pagination /> */}
           </div>
         </div>
         <FilterSidebar onChange={handleFilters} />

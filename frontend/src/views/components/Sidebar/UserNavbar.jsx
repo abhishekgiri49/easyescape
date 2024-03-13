@@ -16,24 +16,32 @@ const UserNavbar = () => {
   const renderContent = () => {
     if (user == undefined) {
       return (
-       
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <Link to="/login" className="nav-link1">
+            <Link to="/idea/category" className="nav-link">
+              Trip Ideas
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
               Login
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/register" className="nav-link1">
+            <Link to="/register" className="nav-link">
               Register
             </Link>
           </li>
         </ul>
-        
       );
     } else {
       return (
         <ul className="nav justify-content-center">
+          <li className="nav-item">
+            <Link to="/idea/category" className="nav-link">
+              Trip Ideas
+            </Link>
+          </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
               <i className="fa fa-heart"></i> Wishlist

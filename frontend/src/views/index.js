@@ -46,3 +46,4 @@ export { default as PaymentCard } from "./pages/Package/cardComponent/PaymentCar
 export { default as SpecialRequest } from "./pages/Package/cardComponent/SpecialRequest";
 
 export { default as Category } from "./pages/home/idea/Category";
+export { default as IdeaBlogList } from "./pages/home/idea/BlogList";

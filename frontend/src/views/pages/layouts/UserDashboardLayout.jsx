@@ -11,12 +11,21 @@ const HomeLayout = () => {
         <NavWrapper>
           <div className="main-navbar shadow-sm sticky-top">
             <UserNavbar />
-            <div class="content-wrapper container-xxl p-1">
-              <div class="sidebar-left">
-                <UserSidebar />
-              </div>
-              <div class="content-right">
-                <Outlet />
+            <div class="my-account-wrapper mt-no-text">
+              <div class="container container-default-2 custom-area">
+                <div class="row">
+                  <div class="col-lg-12 col-custom">
+                    <div class="myaccount-page-wrapper">
+                      <div class="row">
+                        <UserSidebar />
+
+                        <div class="col-lg-9 col-md-8 col-custom">
+                          <Outlet />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
