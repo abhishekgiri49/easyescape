@@ -134,7 +134,7 @@ const SearchBar = ({ onChangeSearch }) => {
           </div>
 
           <div className="button">
-            <button className="btn" onClick={search}>
+            <button className="searchbtn" onClick={search}>
               Search
             </button>
           </div>

@@ -35,11 +35,11 @@
   align-items: center;
 }
 
-.price>.discount-info {
+.price > .discount-info {
   color: #4fc3f7;
 }
 
-.price>.original-price {
+.price > .original-price {
   font-size: 2em;
 }
 
@@ -225,7 +225,7 @@ span.selected {
 
 /*Left*/
 
-.right>h1,
+.right > h1,
 h4 {
   color: #fff;
 }
@@ -304,8 +304,13 @@ fieldset {
   float: right;
   width: 46%;
 }
+h2.center {
+  font-family: "Lobster", cursive;
 
-.btn {
+  padding: 0 0 0 30%;
+  color: #3f51b5;
+}
+.searchbtn {
   background-color: #ffbd26;
   font-family: "Hind", sans-serif;
   font-weight: bold;
@@ -318,7 +323,7 @@ fieldset {
   cursor: pointer;
 }
 
-.btn:hover {
+.searchbtn:hover {
   background-color: #fac778;
 }
 
@@ -430,7 +435,7 @@ fieldset {
   transition: left 0s 0.75s;
 }
 
-[id^="slide"]:checked+.slide {
+[id^="slide"]:checked + .slide {
   left: 0;
   z-index: 100;
   transition: left 0.65s ease-out;
@@ -640,7 +645,7 @@ ul.mainmenu2 li a {
   overflow: hidden;
 }
 
-#collegamenti>li a {
+#collegamenti > li a {
   color: #e5e5e5;
   font-size: 13px;
   text-align: center;
@@ -650,7 +655,7 @@ ul.mainmenu2 li a {
   font-family: "Hind", sans-serif;
 }
 
-#collegamenti>li a:hover {
+#collegamenti > li a:hover {
   color: #f8a426;
 }
 
@@ -715,12 +720,12 @@ ul.mainmenu2 li a {
     margin-top: 120px;
   }
 
-  .right>h1,
+  .right > h1,
   h4 {
     color: #fff;
   }
 
-  .right>.book {
+  .right > .book {
     font-size: 50px;
     font-weight: bold;
     margin-top: -10px;
@@ -728,14 +733,14 @@ ul.mainmenu2 li a {
     font-family: "Secular One", sans-serif;
   }
 
-  .right>.travel {
+  .right > .travel {
     margin-top: 50px;
     font-size: 50px;
     font-weight: bold;
     font-family: "Secular One", sans-serif;
   }
 
-  .right>h4 {
+  .right > h4 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
     margin-top: -40px;
@@ -1013,12 +1018,12 @@ ul.mainmenu2 li a {
     margin-top: 120px;
   }
 
-  .right>h1,
+  .right > h1,
   h4 {
     color: #fff;
   }
 
-  .right>.book {
+  .right > .book {
     font-size: 50px;
     font-weight: bold;
     margin-top: -10px;
@@ -1026,14 +1031,14 @@ ul.mainmenu2 li a {
     font-family: "Secular One", sans-serif;
   }
 
-  .right>.travel {
+  .right > .travel {
     margin-top: 50px;
     font-size: 50px;
     font-weight: bold;
     font-family: "Secular One", sans-serif;
   }
 
-  .right>h4 {
+  .right > h4 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
     margin-top: -40px;

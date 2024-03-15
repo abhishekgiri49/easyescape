@@ -1,5 +1,6 @@
 import { BlogSidebar, Pagination } from "../../../components";
 import { BlogService } from "../../../../repositories";
+import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { useEffect, useState, useMemo } from "react";
 const BlogList = () => {
@@ -72,20 +73,20 @@ const BlogList = () => {
                     <div class="blog-lst">
                       <div class="single-blog">
                         <div class="blog-image">
-                          <a class="d-block" href="blog-details-fullwidth.html">
+                          <Link class="d-block" to={"/blog/detail/" + blog._id}>
                             <img
                               src={`/src/assets/uploads/blogs/${blog.image}`}
                               alt="Blog Image"
                               class="w-100"
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div class="blog-content">
                           <div class="blog-text">
                             <h4>
-                              <a href="blog-details-fullwidth.html">
+                              <Link to={"/blog/detail/" + blog._id}>
                                 {blog.title}
-                              </a>
+                              </Link>
                             </h4>
                             <div class="blog-post-info">
                               <span>
