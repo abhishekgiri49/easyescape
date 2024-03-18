@@ -42,7 +42,6 @@ const createCheckoutSession = async (req, res) => {
       metadata: metadata,
     });
 
-    // // console.log(session);
     // // Return the session ID to the client
     res.status(201).json({
       status: 201,
@@ -63,10 +62,11 @@ const getReturnStatus = async (req, res) => {
     const { sessionId } = req.query;
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     // Return the session ID to the client
+    // console.log(session)
     const metaData = session.metadata || {};
     if (!metaData.orderId) throw new Error("No Order Id Found");
     if (session.status === "complete") {
-      updateStatusById(metaData.orderId, "Booked", "Paid");
+      updateStatusById(metaData.orderId, "Booked", "Paid", session);
     }
 
     res.status(201).json({
@@ -144,7 +144,42 @@ const getAll = async (req, res) => {
       .json({ status: 500, data: [], message: "Internal Server Error" });
   }
 };
+const getAllByUser = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const query = {};
 
+    // Assuming you have the user's ID stored in req.user.id after authentication
+    const userId = req.user._id;
+    if (!userId) throw new Error("No User Id Provided");
+
+    query.user = userId;
+    // Query trips where the user field matches the logged-in user's ID
+    const trips = await Trip.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .populate(["user", "package"]);
+
+    const count = await Trip.countDocuments(query);
+
+    const result = {
+      trips: trips,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    };
+    res.json({
+      status: 200,
+      data: result,
+      message: "All trips of the logged-in user",
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ status: 500, data: [], message: "Internal Server Error" });
+  }
+};
 // Get a specific trip by ID
 const getById = async (req, res) => {
   try {
@@ -244,12 +279,14 @@ const deleteById = async (req, res) => {
 };
 
 // Update status of an Item by ID
-const updateStatusById = async (id, bStatus, pStatus) => {
+const updateStatusById = async (id, bStatus, pStatus, session) => {
   try {
     let updateFields = {
       bookingStatus: bStatus,
       paymentStatus: pStatus,
-      paymentMethod: "card", // Reset the field to empty string when
+      paymentMethod: "card",
+      paymentIntent: session.payment_intent,
+      paymentSessionId: session.id, // Reset the field to empty string when
     };
 
     // Await the execution of the query and get the updated document
@@ -273,6 +310,7 @@ module.exports = {
   getReturnStatus,
   create,
   getAll,
+  getAllByUser,
   getById,
   updateById,
   deleteById,

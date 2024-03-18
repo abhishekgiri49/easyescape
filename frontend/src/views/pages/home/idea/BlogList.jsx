@@ -6,7 +6,7 @@ import { useEffect, useState, useMemo } from "react";
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
   const [formData, setFormData] = useState([]);
-  const [limit] = useState(10);
+  const [limit] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 

@@ -13,7 +13,10 @@ const Tags = () => {
   const [formData, setFormData] = useState([]);
   const [errors, setErrors] = useState({});
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setValue("");
+    setShow(true);
+  };
   const { packageId } = useParams();
   useEffect(() => {
     // Fetch blog details  when the component mounts
@@ -114,7 +117,7 @@ const Tags = () => {
       </div>
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Update Itinerary</Offcanvas.Title>
+          <Offcanvas.Title>Add package infos</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div id="addNewAddressForm" className="row gy-1 gx-2">

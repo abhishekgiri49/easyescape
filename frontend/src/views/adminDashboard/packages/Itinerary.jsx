@@ -12,7 +12,11 @@ const Itinerary = () => {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+    setFormData({});
+    setErrors({});
+  };
   const { packageId } = useParams();
   useEffect(() => {
     // Fetch blog details  when the component mounts
@@ -97,10 +101,10 @@ const Itinerary = () => {
           <thead>
             <tr>
               <th class="py-1">Day</th>
-              <th class="py-1">Task description</th>
-              <th class="py-1">Stay</th>
+              <th class="py-1">Stay Place</th>
+              <th class="py-1">Stay description</th>
 
-              <th class="py-1">Total</th>
+              <th class="py-1">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -111,11 +115,12 @@ const Itinerary = () => {
                     <p class="card-text fw-bold mb-25">{item.dayCount}</p>
                   </td>
                   <td class="py-1">
-                    <p class="card-text fw-bold mb-25">{item.title}</p>
-                  </td>
-                  <td class="py-1">
                     <p class="card-text fw-bold mb-25">{item.stay}</p>
                   </td>
+                  <td class="py-1">
+                    <p class="card-text fw-bold mb-25">{item.title}</p>
+                  </td>
+
                   <td class="py-1">
                     <FaTrash onClick={() => handleDeleteItem(item._id)} />
                   </td>
@@ -131,7 +136,7 @@ const Itinerary = () => {
         <Offcanvas.Body>
           <div id="addNewAddressForm" className="row gy-1 gx-2">
             <div className="col-12">
-              <label className="form-label">Title</label>
+              <label className="form-label">Stay Description *</label>
               <input
                 type="text"
                 name="title"
@@ -161,7 +166,7 @@ const Itinerary = () => {
               )}
             </div>
             <div className="col-12">
-              <label className="form-label">Stay</label>
+              <label className="form-label">Stay Place</label>
               <input
                 type="text"
                 name="stay"

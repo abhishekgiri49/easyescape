@@ -18,7 +18,7 @@ export { default as FlashDeal } from "./HomeComponent/FlashDeal";
 export { default as TrendingBlogs } from "./HomeComponent/TrendingBlogs";
 export { default as SearchBar } from "./HomeComponent/SearchBar";
 export { default as OurHighlights } from "./HomeComponent/OurHighlights";
-export { default as Sin2 } from "./HomeComponent/Sin2";
+
 export { default as Footer } from "./HomeComponent/Footer";
 export { default as Alert } from "./Alert";
 export { default as LoadingScreen } from "./LoadingScreen";

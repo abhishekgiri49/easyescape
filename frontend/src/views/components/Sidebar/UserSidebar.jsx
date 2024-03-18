@@ -1,28 +1,35 @@
+import { Link, useLocation } from "react-router-dom";
+import { useUserDashboardContext } from "../../pages/layouts/UserDashboardLayout";
+import { useEffect, useState } from "react";
 const UserSidebar = () => {
+  const { logoutUser } = useUserDashboardContext();
+  const location = useLocation();
+  const links = [
+    { label: "My Trips", path: "/dashboard/trips" },
+    { label: "Account Details", path: "/dashboard/account" },
+    { label: "Change Password", path: "/dashboard/change-password" },
+  ];
+
   return (
-    <div class="col-lg-3 col-md-4 col-custom">
-      <div class="myaccount-tab-menu nav" role="tablist">
-        <a href="#dashboad" class="active" data-toggle="tab">
-          <i class="fa fa-dashboard"></i>
+    <div className="col-lg-3 col-md-4 col-custom">
+      <div className="myaccount-tab-menu nav">
+        <Link
+          to={"/dashboard"}
+          className={location.pathname == "/dashboard" ? "active" : ""}
+        >
           Dashboard
-        </a>
-        <a href="#orders" data-toggle="tab">
-          <i class="fa fa-cart-arrow-down"></i> Orders
-        </a>
-        <a href="#download" data-toggle="tab">
-          <i class="fa fa-cloud-download"></i> Download
-        </a>
-        <a href="#payment-method" data-toggle="tab">
-          <i class="fa fa-credit-card"></i> Payment Method
-        </a>
-        <a href="#address-edit" data-toggle="tab">
-          <i class="fa fa-map-marker"></i> address
-        </a>
-        <a href="#account-info" data-toggle="tab">
-          <i class="fa fa-user"></i> Account Details
-        </a>
-        <a href="login.html">
-          <i class="fa fa-sign-out"></i> Logout
+        </Link>
+        {links.map((link, index) => (
+          <Link
+            key={index}
+            to={link.path}
+            className={location.pathname.startsWith(link.path) ? "active" : ""}
+          >
+            <i className={link.icon}></i> {link.label}
+          </Link>
+        ))}
+        <a onClick={logoutUser}>
+          <i className="fa fa-sign-out"></i> Logout
         </a>
       </div>
     </div>

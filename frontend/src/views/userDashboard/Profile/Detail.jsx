@@ -1,259 +1,186 @@
+import { useUserDashboardContext } from "../../pages/layouts/UserDashboardLayout";
+import React, { useState, useEffect } from "react";
+import { UserService } from "../../../repositories";
+import { Alert } from "../../components";
 const Detail = () => {
+  const { user } = useUserDashboardContext();
+  const [errors, setErrors] = useState({});
+  const [row, setRow] = useState({});
+  const [formData, setFormData] = useState({
+    _id: null,
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    phoneNumber: "",
+  });
+  useEffect(() => {
+    fetchUserList();
+  }, []);
+
+  const fetchUserList = () => {
+    UserService.find(user._id).then((data) => {
+      const { firstName, lastName, username, email, phoneNumber } = data;
+      setFormData({
+        firstName,
+        lastName,
+        username,
+        email,
+        phoneNumber,
+      });
+    });
+  };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = () => {
+    // Handle form submission logic here
+    UserService.updateProfile(user._id, formData)
+      .then(() => {
+        setErrors({});
+
+        Alert("success", `User data has been updated successfully`);
+        fetchUserList();
+
+        // Optionally, you can redirect or perform other actions after successful update
+      })
+      .catch((error) => {
+        handleErrors(error);
+      });
+  };
+  const handleErrors = (error) => {
+    if (error.status === 422) {
+      const newErrors = {};
+      error.data.data.forEach((item) => {
+        const fieldName = item.path;
+        const errorMsg = item.msg;
+        newErrors[fieldName] = errorMsg;
+      });
+      setErrors(newErrors);
+    } else {
+      Alert("error", `Error performing. Please try again.`);
+    }
+  };
   return (
-    <div class="tab-content" id="myaccountContent">
-      <div class="tab-pane fade" id="dashboad" role="tabpanel">
-        <div class="myaccount-content">
-          <h3>Dashboard</h3>
-          <div class="welcome">
-            <p>
-              Hello, <strong>Alex Aya</strong> (If Not <strong>Aya !</strong>
-              <a href="login-register.html" class="logout">
-                {" "}
-                Logout
-              </a>
-              )
-            </p>
-          </div>
-          <p class="mb-0">
-            From your account dashboard. you can easily check & view your recent
-            orders, manage your shipping and billing addresses and edit your
-            password and account details.
-          </p>
-        </div>
-      </div>
-
-      <div class="tab-pane fade" id="orders" role="tabpanel">
-        <div class="myaccount-content">
-          <h3>Orders</h3>
-          <div class="myaccount-table table-responsive text-center">
-            <table class="table table-bordered">
-              <thead class="thead-light">
-                <tr>
-                  <th>Order</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Total</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Aug 22, 2018</td>
-                  <td>Pending</td>
-                  <td>$3000</td>
-                  <td>
-                    <a
-                      href="cart.html"
-                      class="btn flosun-button secondary-btn theme-color  rounded-0"
-                    >
-                      View
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>July 22, 2018</td>
-                  <td>Approved</td>
-                  <td>$200</td>
-                  <td>
-                    <a
-                      href="cart.html"
-                      class="btn flosun-button secondary-btn theme-color  rounded-0"
-                    >
-                      View
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>June 12, 2019</td>
-                  <td>On Hold</td>
-                  <td>$990</td>
-                  <td>
-                    <a
-                      href="cart.html"
-                      class="btn flosun-button secondary-btn theme-color  rounded-0"
-                    >
-                      View
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane fade" id="download" role="tabpanel">
-        <div class="myaccount-content">
-          <h3>Downloads</h3>
-          <div class="myaccount-table table-responsive text-center">
-            <table class="table table-bordered">
-              <thead class="thead-light">
-                <tr>
-                  <th>Product</th>
-                  <th>Date</th>
-                  <th>Expire</th>
-                  <th>Download</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Haven - Free Real Estate PSD Template</td>
-                  <td>Aug 22, 2018</td>
-                  <td>Yes</td>
-                  <td>
-                    <a
-                      href="#"
-                      class="btn flosun-button secondary-btn theme-color  rounded-0"
-                    >
-                      <i class="fa fa-cloud-download mr-2"></i>
-                      Download File
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>HasTech - Profolio Business Template</td>
-                  <td>Sep 12, 2018</td>
-                  <td>Never</td>
-                  <td>
-                    <a
-                      href="#"
-                      class="btn flosun-button secondary-btn theme-color  rounded-0"
-                    >
-                      <i class="fa fa-cloud-download mr-2"></i>
-                      Download File
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane fade" id="payment-method" role="tabpanel">
-        <div class="myaccount-content">
-          <h3>Payment Method</h3>
-          <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
-        </div>
-      </div>
-
-      <div class="tab-pane fade" id="address-edit" role="tabpanel">
-        <div class="myaccount-content">
-          <h3>Billing Address</h3>
-          <address>
-            <p>
-              <strong>Alex Aya</strong>
-            </p>
-            <p>
-              1234 Market ##, Suite 900 <br />
-              Lorem Ipsum, ## 12345
-            </p>
-            <p>Mobile: (123) 123-456789</p>
-          </address>
-          <a
-            href="#"
-            class="btn flosun-button secondary-btn theme-color  rounded-0"
-          >
-            <i class="fa fa-edit mr-2"></i>Edit Address
-          </a>
-        </div>
-      </div>
-
-      <div class="tab-pane fade  show active" id="account-info" role="tabpanel">
-        <div class="myaccount-content">
+    <>
+      <div id="account-info" role="tabpanel">
+        <div className="myaccount-content">
           <h3>Account Details</h3>
-          <div class="account-details-form">
-            <form action="#">
-              <div class="row">
-                <div class="col-lg-6 col-custom">
-                  <div class="single-input-item mb-3">
-                    <label for="first-name" class="required mb-1">
+          <div className="account-details-form">
+            <div className="accForm" action="#">
+              <div className="row">
+                <div className="col-lg-6 col-custom">
+                  <div className="single-input-item mb-3">
+                    <label for="first-name" className="required mb-1">
                       First Name
                     </label>
                     <input
                       type="text"
                       id="first-name"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       placeholder="First Name"
                     />
+                    {errors && errors.hasOwnProperty("firstName") && (
+                      <span className="alert alert-danger" role="alert">
+                        {errors.firstName}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div class="col-lg-6 col-custom">
-                  <div class="single-input-item mb-3">
-                    <label for="last-name" class="required mb-1">
+                <div className="col-lg-6 col-custom">
+                  <div className="single-input-item mb-3">
+                    <label for="last-name" className="required mb-1">
                       Last Name
                     </label>
-                    <input type="text" id="last-name" placeholder="Last Name" />
+                    <input
+                      type="text"
+                      id="last-name"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      placeholder="Last Name"
+                    />
+                    {errors && errors.hasOwnProperty("lastName") && (
+                      <span className="alert alert-danger" role="alert">
+                        {errors.lastName}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
-              <div class="single-input-item mb-3">
-                <label for="display-name" class="required mb-1">
-                  Display Name
+              <div className="single-input-item mb-3">
+                <label for="Username" className="required mb-1">
+                  Username
                 </label>
                 <input
                   type="text"
-                  id="display-name"
-                  placeholder="Display Name"
+                  id="phone"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  placeholder="958-472-0987"
                 />
+                {errors && errors.hasOwnProperty("username") && (
+                  <span className="alert alert-danger" role="alert">
+                    {errors.username}
+                  </span>
+                )}
               </div>
-              <div class="single-input-item mb-3">
-                <label for="email" class="required mb-1">
-                  Email Addres
+              <div className="single-input-item mb-3">
+                <label for="phone" className="required mb-1">
+                  Phone Number
                 </label>
-                <input type="email" id="email" placeholder="Email Address" />
+                <input
+                  type="text"
+                  id="phone"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  placeholder="958-472-0987"
+                />
+                {errors && errors.hasOwnProperty("phoneNumber") && (
+                  <span className="alert alert-danger" role="alert">
+                    {errors.phoneNumber}
+                  </span>
+                )}
               </div>
-              <fieldset>
-                <legend>Password change</legend>
-                <div class="single-input-item mb-3">
-                  <label for="current-pwd" class="required mb-1">
-                    Current Password
-                  </label>
-                  <input
-                    type="password"
-                    id="current-pwd"
-                    placeholder="Current Password"
-                  />
-                </div>
-                <div class="row">
-                  <div class="col-lg-6 col-custom">
-                    <div class="single-input-item mb-3">
-                      <label for="new-pwd" class="required mb-1">
-                        New Password
-                      </label>
-                      <input
-                        type="password"
-                        id="new-pwd"
-                        placeholder="New Password"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-custom">
-                    <div class="single-input-item mb-3">
-                      <label for="confirm-pwd" class="required mb-1">
-                        Confirm Password
-                      </label>
-                      <input
-                        type="password"
-                        id="confirm-pwd"
-                        placeholder="Confirm Password"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-              <div class="single-input-item single-item-button">
-                <button class="btn flosun-button secondary-btn theme-color  rounded-0">
+              <div className="single-input-item mb-3">
+                <label for="email" className="required mb-1">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email Address"
+                />
+                {errors && errors.hasOwnProperty("email") && (
+                  <span className="alert alert-danger" role="alert">
+                    {errors.email}
+                  </span>
+                )}
+              </div>
+
+              <div className="single-input-item single-item-button">
+                <button
+                  onClick={handleSubmit}
+                  className="btn flosun-button secondary-btn theme-color  rounded-0"
+                >
                   Save Changes
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Detail;

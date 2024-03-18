@@ -27,6 +27,10 @@ export { default as PackageItinerary } from "./adminDashboard/packages/Itinerary
 export { default as TripList } from "./adminDashboard/trips/List";
 
 export { default as ProfileDetail } from "./userDashboard/Profile/Detail";
+export { default as UserDashboard } from "./userDashboard/Dashboard";
+export { default as UserTripList } from "./userDashboard/Trips/List";
+export { default as UserTripDetail } from "./userDashboard/Trips/Detail";
+export { default as UserChangePassword } from "./userDashboard/Profile/ChangePassword";
 
 export { default as Search } from "./pages/home/Search";
 export { default as Register } from "./pages/auth/Register";

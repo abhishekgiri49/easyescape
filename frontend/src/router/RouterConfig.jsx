@@ -27,6 +27,10 @@ import {
   Category,
   IdeaBlogList,
   IdeaBlogDetail,
+  UserDashboard,
+  UserTripList,
+  UserTripDetail,
+  UserChangePassword,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -153,7 +157,23 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <UserDashboard />,
+      },
+      {
+        path: "account",
         element: <ProfileDetail />,
+      },
+      {
+        path: "change-password",
+        element: <UserChangePassword />,
+      },
+      {
+        path: "trips",
+        element: <UserTripList />,
+      },
+      {
+        path: "trips/:id",
+        element: <UserTripDetail />,
       },
     ],
   },

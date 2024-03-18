@@ -10,6 +10,7 @@ const packageSchema = new mongoose.Schema({
   status: { type: String },
   travelIncluded: [{ type: String }],
   image: { type: String },
+
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category", // Reference to the Category model

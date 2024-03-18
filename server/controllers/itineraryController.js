@@ -43,7 +43,9 @@ const getById = async (req, res) => {
   try {
     const itinerary = await Itinerary.find({
       package: req.params.id,
-    }).populate("package");
+    })
+      .populate("package")
+      .sort({ dayCount: 1 });
 
     if (!itinerary)
       return res
