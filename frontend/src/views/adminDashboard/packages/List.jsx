@@ -174,7 +174,18 @@ const List = () => {
 
   const handleCloseModal = () => {
     setEditMode(false);
-
+    setFormData({
+      _id: null,
+      title: "",
+      content: "",
+      actualCost: "",
+      discountedCost: "",
+      duration: "",
+      isFlightAvailable: "",
+      categoryId: "",
+      placeId: "",
+      status: "",
+    });
     setShow(false);
   };
   const menuItems = useMemo(

@@ -83,6 +83,24 @@ const getReturnStatus = async (req, res) => {
     });
   }
 };
+const refundPayment = async (req, res) => {
+  try {
+    const { tripId } = req.params.id;
+
+    res.status(201).json({
+      status: 201,
+      message: "success",
+      data: {},
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: 500,
+      data: error,
+      message: "Internal Server Error",
+    });
+  }
+};
 //  ------------------------------ Payment Intent APIS ----------------------------
 //create trip
 const create = async (req, res) => {
